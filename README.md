@@ -1,2 +1,5 @@
-# comp3000-70cw
-A GitHub repository for the COMP3000 module, by the Intuit Softworks team
+# COMP3000 - 70% CW
+A GitHub repository for the COMP3000 module
+
+# Team: Intuit Softworks
+## Members:
