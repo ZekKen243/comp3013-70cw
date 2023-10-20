@@ -1,5 +1,5 @@
 # COMP3013 - 70% CW
-A GitHub repository for the COMP3000 module
+A GitHub repository for the COMP3013 module
 
 # Team: Intuit Softworks
 ## Members:
