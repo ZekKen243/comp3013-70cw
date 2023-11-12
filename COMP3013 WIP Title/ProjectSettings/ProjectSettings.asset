@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: aaee0ef43a6a7cb4ea70a1bb898d59d0
+  productGUID: 2d371d23c95a93c4784e299d71e42db8
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: COMP3013
+  productName: COMP3013 WIP Title
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -48,6 +48,7 @@ PlayerSettings:
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
+  unsupportedMSAAFallback: 0
   m_SpriteBatchVertexThreshold: 300
   m_MTRendering: 1
   mipStripping: 0
@@ -673,14 +674,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: COMP3013
+  metroPackageName: COMP3013 WIP Title
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: COMP3013
+  metroApplicationDescription: COMP3013 WIP Title
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -749,11 +750,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 224f65ab-b849-48be-95b4-d0f46e5b5133
+  cloudProjectId: eab57adc-930f-4827-a72f-e9f86717c356
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: COMP3013 2023-10-29_22-22-33
-  organizationId: zekken_24
+  projectName: COMP3013 WIP Title
+  organizationId: colaboy98
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
