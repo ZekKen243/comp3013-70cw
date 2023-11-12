@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!mainCamera)
         {
-            Debug.LogError("mainCamera refference is null!");
+            Debug.LogError("mainCamera reference is null");
             return;
         }
 
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!rigidBody)
         {
-            Debug.LogError("rigidBody refference is null.");
+            Debug.LogError("rigidBody reference is null");
             return;
         }
 
