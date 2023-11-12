@@ -6,24 +6,37 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float moveSpeed;
-    private Rigidbody myRigidbody;
 
-    private Vector3 moveInput;
-    private Vector3 moveVelocity;
 
+    private Rigidbody rigidBody;
     private Camera mainCamera;
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        myRigidbody = GetComponent<Rigidbody>();
+        InitReferences();
+    }
+
+    private void InitReferences()
+    {
+        rigidBody = GetComponent<Rigidbody>();
         mainCamera = FindObjectOfType<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput * moveSpeed;
+        UpdateBodyRotation();
+        UpdateBodyVelocity();
+    }
+
+    private void UpdateBodyRotation()
+    {
+        if(!mainCamera)
+        {
+            Debug.LogError("mainCamera refference is null!");
+            return;
+        }
 
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
@@ -36,11 +49,24 @@ public class PlayerMovement : MonoBehaviour
 
             transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
         }
-
-
     }
-    void FixedUpdate()
+
+    private void UpdateBodyVelocity()
     {
-        myRigidbody.velocity = moveVelocity;
+        if(!rigidBody)
+        {
+            Debug.LogError("rigidBody refference is null.");
+            return;
+        }
+
+        rigidBody.velocity = GetMoveVelocity();
     }
+
+
+    private Vector3 GetMoveVelocity()
+    {
+        Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        return moveInput * moveSpeed;
+    }
+
 }
