@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float moveSpeed;
 
 
@@ -68,5 +67,4 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         return moveInput * moveSpeed;
     }
-
 }
