@@ -2,9 +2,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// todo: make an abstract class that will be inherited
 class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-  public CardIcon cardIcon = null;
+  public InventoryIcon cardIcon = null;
   public CardData cardData = null;
   private InventoryWindow inventoryWindow = null;
 
@@ -22,19 +23,20 @@ class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
     InitReferences();
   }
 
-
   private void InitReferences()
   {
-    cardIcon = GetComponentInChildren<CardIcon>();
+    cardIcon = GetComponentInChildren<InventoryIcon>();
     inventoryWindow = GetComponentInParent<InventoryWindow>();
   }
 
-
-  public void SetCardData(CardData _cardData)
+  public void UpdateSlot()
   {
-    Debug.LogFormat("Set card data for card slot {0}.", index);
-    cardData = _cardData;
+    SetCardData(InventoryManager.Instance.GetCard(index));
+  }
 
+  public void SetCardData(CardData data)
+  {
+    cardData = data;
     UpdateIcon();
   }
 
@@ -48,11 +50,52 @@ class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 
    if(cardData == null)
    {
-      cardIcon.SetIcon(null);
-      return;
+    cardIcon.SetIcon(null);
+    return;
    }
 
-    cardIcon.SetIcon(cardData.icon);
+    cardIcon.SetIcon(GetSpriteByElement());
+  }
+
+  private Sprite GetSpriteByElement()
+  {
+    if(cardData == null)
+    {
+      return null;
+    }
+
+    string spritePath = "";
+
+    switch(cardData.element)
+    {
+      case CardElement.NONE:
+      {
+        return null;
+      }
+      
+      case CardElement.FIRE:
+      {
+        spritePath = "fire_card_sprite";
+        break;
+      }
+
+      case CardElement.WIND:
+      {
+        spritePath = "wind_card_sprite";
+        break;
+      }
+
+      case CardElement.ICE:
+      {
+        spritePath = "ice_card_sprite";
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    return Resources.Load<Sprite>(spritePath);
   }
 
   public void OnPointerEnter(PointerEventData eventData)
@@ -72,20 +115,52 @@ class InventorySlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointe
 
   public void OnDrop(PointerEventData eventData)
   {
-    CardIcon cardIcon = eventData.pointerDrag.GetComponent<CardIcon>();
-    if(cardIcon == null)
+    InventoryIcon invCardIcon = eventData.pointerDrag.GetComponent<InventoryIcon>();
+    if(OnDropInventoryCard(invCardIcon))
     {
       return;
+    }
+
+    EquipmentIcon eqCardIcon = eventData.pointerDrag.GetComponent<EquipmentIcon>();
+    OnDropEquipmentCard(eqCardIcon);
+  }
+
+  private bool OnDropInventoryCard(InventoryIcon cardIcon)
+  {
+    if(cardIcon == null)
+    {
+      return false;
     }
     else if(index == cardIcon.GetSlotIndex())
     {
-      return;
+      return false;
     }
 
+    CardData dropCardData = cardIcon.GetCardData();
+    CardData thisCardData = cardData;
 
-    CardData cardData = cardIcon.GetCardData();
-    InventoryManager.Instance.SetCard(index, cardData);
-    InventoryManager.Instance.SetCard(cardIcon.GetSlotIndex(), null);
+    InventoryManager.Instance.SetCard(index, dropCardData);
+    InventoryManager.Instance.SetCard(cardIcon.GetSlotIndex(), thisCardData);
+    return true;
+  }
+
+  private bool OnDropEquipmentCard(EquipmentIcon cardIcon)
+  {
+    if(cardIcon == null)
+    {
+      return false;
+    }
+    else if(index == cardIcon.GetSlotIndex())
+    {
+      return false;
+    }
+
+    CardData dropCardData = cardIcon.GetCardData();
+    CardData thisCardData = cardData;
+
+    InventoryManager.Instance.SetCard(index, dropCardData);
+    EquipmentManager.Instance.SetCard(cardIcon.GetSlotIndex(), thisCardData);
+    return true;
   }
 }
 

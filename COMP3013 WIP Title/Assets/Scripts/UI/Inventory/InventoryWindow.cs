@@ -18,18 +18,17 @@ public class InventoryWindow : BaseWindow
     inventoryTooltip = GetComponentInChildren<InventoryTooltip>(true);
   }
 
-
-  public void SetInventoryCard(int index, CardData cardData)
+  public void UpdateSlot(int index)
   {
-    Debug.LogFormat("Set inventory card index {0}, data {1}", index, cardData);
+    Debug.LogFormat("Update inventory slot {0}", index);
 
     if(index >= cardSlots.Length || index < 0)
     {
-      Debug.LogErrorFormat("Failed to set inventory card, index out of range. Index: {0}, slots available: {1}", index, cardSlots.Length);
+      Debug.LogErrorFormat("Failed to update inventory slot, index out of range. Index: {0}, slots available: {1}", index, cardSlots.Length);
       return;
     }
 
-    cardSlots[index].SetCardData(cardData);
+    cardSlots[index].UpdateSlot();
   }
 
   public void OpenTooltip(CardData cardData)
@@ -39,6 +38,7 @@ public class InventoryWindow : BaseWindow
       Debug.LogErrorFormat("Cannot open tooltip, no child with InventoryTooltip script found.");
       return;
     }
+
     inventoryTooltip.Open(cardData);
   }
 
