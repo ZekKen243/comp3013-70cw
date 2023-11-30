@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 // todo: make an abstract class that will be inherited
-class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
+class EquipmentSlot : MonoBehaviour, IDropHandler
 {
   public EquipmentIcon cardIcon = null;
   public CardData cardData = null;
@@ -140,14 +140,5 @@ class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     return true;
   }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-      if (eventData.button != PointerEventData.InputButton.Right)
-      {
-        return;
-      }
-
-
-    }
 }
 

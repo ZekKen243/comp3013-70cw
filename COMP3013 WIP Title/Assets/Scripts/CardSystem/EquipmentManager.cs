@@ -14,17 +14,14 @@ public class EquipmentManager : MonoBehaviour
   {
     Instance = this;
     equipmentWnd = GetComponent<EquipmentWindow>();
+
+    SetCard(0, new CardData { id = 3, element = CardElement.ICE });
   }
 
   public void SetCard(int index, CardData card)
   {
     equipedCards[index] = card;
-    equipmentWnd.SetEquipmentCard(index, card);
-  }
-
-  public int GetFreeCellIndex()
-  {
-    return 0;
+    equipmentWnd.UpdateSlot(index);
   }
 
   public CardData GetEquipedCard(int index)

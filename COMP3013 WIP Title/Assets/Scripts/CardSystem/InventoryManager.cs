@@ -53,18 +53,6 @@ public class InventoryManager : MonoBehaviour
     SetCard(3, windCard);
   }
 
-  public void EquipCard(int index)
-  {
-    CardData card = GetCard(index);
-    if(card == null)
-    {
-      return;
-    }
-
-
-    SetCard(index, null);
-    EquipmentManager.Instance.SetCard(index, card);
-  }
 
   public void SetCard(int index, CardData card)
   {

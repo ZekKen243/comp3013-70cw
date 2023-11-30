@@ -16,9 +16,9 @@ public class EquipmentWindow : BaseWindow
     cardSlots = GetComponentsInChildren<EquipmentSlot>();
   }
 
-  public void SetEquipmentCard(int index, CardData cardData)
+  public void UpdateSlot(int index)
   {
-    Debug.LogFormat("Set equipment card index {0}, data {1}", index, cardData);
+    Debug.LogFormat("Set equipment card index {0}", index);
 
     if(index >= cardSlots.Length || index < 0)
     {

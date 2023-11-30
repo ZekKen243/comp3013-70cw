@@ -1906,6 +1906,8 @@ GameObject:
   - component: {fileID: 2369168097874090922}
   - component: {fileID: 6283894557097144586}
   - component: {fileID: 5528441503646248938}
+  - component: {fileID: 3571021144554053054}
+  - component: {fileID: 641031207251824830}
   m_Layer: 5
   m_Name: EquipmentWindow
   m_TagString: Untagged
@@ -1996,6 +1998,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentWnd: {fileID: 6283894557097144586}
+--- !u!114 &3571021144554053054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569476986189549927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065306b79cc2ba64f8650418f21c7dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &641031207251824830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569476986189549927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b5749c73c1e7d47851d45f59a8f3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipmentWnd: {fileID: 3571021144554053054}
 --- !u!1 &4602801234957657702
 GameObject:
   m_ObjectHideFlags: 0
