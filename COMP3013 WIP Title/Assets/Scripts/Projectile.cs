@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] 
     private float maxProjecttileDistance;
+
+    [SerializeField] public int projectileDamage;
     
     // Start is called before the first frame update
     void Start()
@@ -38,5 +40,14 @@ public class Projectile : MonoBehaviour
             transform.Translate(Vector3.right * projectileSpeed * Time.deltaTime);
         }
         
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+            Destroy(this.gameObject);
+        }
     }
 }
