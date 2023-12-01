@@ -6,24 +6,24 @@ using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData
 
 public class InventoryManager : MonoBehaviour 
 {
-  static public InventoryManager Instance = null;
-
-  public InventoryWindow inventoryWindow = null;
-
   public void Awake()
   {
     Instance = this;
-    inventoryWindow = GetComponent<InventoryWindow>();
+    InitReferences();
+  }
+
+  private void InitReferences()
+  {
+    inventoryWnd = GetComponent<InventoryWindow>();
   }
 
   public void Start()
   {
-    InitMockCard();
+    InitTestCards();
   }
 
-
   //! TEST PURPOSE
-  private void InitMockCard()
+  private void InitTestCards()
   {
 
     CardData fireCard = new CardData
@@ -48,16 +48,55 @@ public class InventoryManager : MonoBehaviour
     };
 
     SetCard(0, fireCard);
-
     SetCard(2, iceCard);
     SetCard(3, windCard);
   }
 
+  public int GetEmptySlotIndex()
+  {
+    for (int i = 0; i < Constants.MAX_INVENTORY_SIZE; i++)
+    {
+      if(GetCard(i) == null)
+      {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  public void EquipCard(int index)
+  {
+    CardData cardData = GetCard(index);
+    if(cardData == null)
+    {
+      return;
+    }
+
+    int eqSlotIndex = EquipmentManager.Instance.GetEmptySlotIndex();
+    if(eqSlotIndex < 0)
+    {
+      Debug.Log("Cannot unequip card, equipment is full.");
+      return;
+    }
+
+    EquipmentManager.Instance.SetCard(eqSlotIndex, cardData);
+    SetCard(index, null);
+  }
+
+  public void SwapCards(int srcIndex, int targetIndex)
+  {
+    CardData srcCard = GetCard(srcIndex);
+    CardData targetCard = GetCard(targetIndex);
+
+    SetCard(srcIndex, targetCard);
+    SetCard(targetIndex, srcCard);
+  }
 
   public void SetCard(int index, CardData card)
   {
     cardCollection[index] = card;
-    inventoryWindow.UpdateSlot(index);
+    inventoryWnd.UpdateSlot(index);
   }
 
   public CardData GetCard(int index)
@@ -74,6 +113,8 @@ public class InventoryManager : MonoBehaviour
     }
   }
 
+  static public InventoryManager Instance = null;
+  public InventoryWindow inventoryWnd = null;
   private CardCollection cardCollection = new CardCollection();
 }
 

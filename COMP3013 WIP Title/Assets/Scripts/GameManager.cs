@@ -3,22 +3,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public enum GameScene 
-{
-  MAIN_MENU,
-  MAIN_SCENE,
-  SAMPLE_SCENE
-}
-
 class GameManager: MonoBehaviour
 {
-  private static GameManager instance = null;
-  
-  public bool isGamePaused = false;
 
   public void TogglePause()
   {
-    isGamePaused = !isGamePaused;
+    SetPause(!isGamePaused);
+  }
+
+  public void SetPause(bool pause)
+  {
+    isGamePaused = pause;
 
     if(isGamePaused)
     {
@@ -61,6 +56,9 @@ class GameManager: MonoBehaviour
     }
   }
 
+  
+  public bool isGamePaused = false;
+  private static GameManager instance = null;
 }
 
 
