@@ -1,8 +1,13 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class InventoryTooltip : MonoBehaviour
 {
+  private CardData cardData = null;
+  
+  public TextMeshProUGUI cardTitle = null;
+
   public void Open(ref CardData _cardData)
   {
     cardData = _cardData;
@@ -21,8 +26,5 @@ public class InventoryTooltip : MonoBehaviour
     cardTitle.text = cardData.name;
   }
 
-
-  private CardData cardData = null;
-  public Text cardTitle = null;
 }
 

@@ -6,6 +6,12 @@ using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData
 
 public class InventoryManager : MonoBehaviour 
 {
+
+  static public InventoryManager Instance = null;
+  public InventoryWindow inventoryWnd = null;
+  private CardCollection cardCollection = new CardCollection();
+
+
   public void Awake()
   {
     Instance = this;
@@ -112,9 +118,5 @@ public class InventoryManager : MonoBehaviour
       return null;
     }
   }
-
-  static public InventoryManager Instance = null;
-  public InventoryWindow inventoryWnd = null;
-  private CardCollection cardCollection = new CardCollection();
 }
 
