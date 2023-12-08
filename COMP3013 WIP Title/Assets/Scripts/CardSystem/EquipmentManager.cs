@@ -7,6 +7,10 @@ using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData
 public class EquipmentManager : MonoBehaviour 
 {
 
+  static public EquipmentManager Instance = null;
+  public EquipmentWindow equipmentWnd = null;
+  private CardCollection equipedCards = new CardCollection();
+
   public void Awake()
   {
     Instance = this;
@@ -89,9 +93,5 @@ public class EquipmentManager : MonoBehaviour
     }
   }
 
-
-  static public EquipmentManager Instance = null;
-  public EquipmentWindow equipmentWnd = null;
-  private CardCollection equipedCards = new CardCollection();
 }
 
