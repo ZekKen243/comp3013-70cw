@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 81601714}
   - component: {fileID: 81601713}
   - component: {fileID: 81601712}
-  - component: {fileID: 81601711}
   - component: {fileID: 81601710}
   - component: {fileID: 81601716}
   m_Layer: 0
@@ -157,19 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d20b6fd8fc7314da979885ac550de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &81601711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81601709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e46d4754e7a4b41b0ac5515cce848f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castScript: {fileID: 0}
 --- !u!65 &81601712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -211,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 929f509fafb8fe6438d7e4285b5bf1ce, type: 2}
+  - {fileID: 2100000, guid: 487718ad254f38f4283662b8e31a5b0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -266,10 +252,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 81601709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e46d4754e7a4b41b0ac5515cce848f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d9a8bfbb05baca429f7a7ad5797e4d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castScript: {fileID: 579216855}
+  rotationSpeed: 41
+  animate: 1
+  canPickUp: 1
 --- !u!1 &97752037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3240017920064995666, guid: ef235a2905c723b45a4a2d87477d0f99, type: 3}
@@ -648,7 +636,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 10
   m_Range: 5
   m_SpotAngle: 30
@@ -916,10 +904,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 522193766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c4884d29047bbf49ac666a8b3f0faef, type: 3}
+  m_Script: {fileID: 11500000, guid: 10f91cbaa910e46408600bcb41b7f732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 15
 --- !u!1 &579216847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,7 +1990,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.4193265, y: -0, z: -0, w: 0.90783554}
-  m_LocalPosition: {x: 0, y: 21.06, z: -16.14}
+  m_LocalPosition: {x: 0, y: 19.27, z: -14.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
