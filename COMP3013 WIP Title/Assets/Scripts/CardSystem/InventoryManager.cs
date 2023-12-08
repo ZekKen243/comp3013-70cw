@@ -58,19 +58,6 @@ public class InventoryManager : MonoBehaviour
     SetCard(3, windCard);
   }
 
-  public int GetEmptySlotIndex()
-  {
-    for (int i = 0; i < Constants.MAX_INVENTORY_SIZE; i++)
-    {
-      if(GetCard(i) == null)
-      {
-        return i;
-      }
-    }
-
-    return -1;
-  }
-
   public void EquipCard(int index)
   {
     CardData cardData = GetCard(index);
@@ -99,6 +86,18 @@ public class InventoryManager : MonoBehaviour
     SetCard(targetIndex, srcCard);
   }
 
+  public bool AutoSetCard(CardData card)
+  {
+    int index = GetEmptySlotIndex();
+    if(index < 0)
+    {
+      return false;
+    }
+
+    SetCard(index, card);
+    return true;
+  }
+
   public void SetCard(int index, CardData card)
   {
     cardCollection[index] = card;
@@ -117,6 +116,19 @@ public class InventoryManager : MonoBehaviour
     {
       return null;
     }
+  }
+
+  public int GetEmptySlotIndex()
+  {
+    for (int i = 0; i < Constants.MAX_INVENTORY_SIZE; i++)
+    {
+      if(GetCard(i) == null)
+      {
+        return i;
+      }
+    }
+
+    return -1;
   }
 }
 
