@@ -14,14 +14,8 @@ class GameManager: MonoBehaviour
   public void SetPause(bool pause)
   {
     isGamePaused = pause;
+    Time.timeScale = isGamePaused ? 0.0f: 1.0f;
 
-    if(isGamePaused)
-    {
-      Time.timeScale = 0.0f;
-      return;
-    }
-
-    Time.timeScale = 1.0f;
   }
 
   public void LoadScene(GameScene gameScene)
