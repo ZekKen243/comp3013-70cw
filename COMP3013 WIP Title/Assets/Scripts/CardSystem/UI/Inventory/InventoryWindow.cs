@@ -8,7 +8,12 @@ public class InventoryWindow : BaseWindow
   {
     InitReferences();
   }
-  
+
+  public void Start()
+  {
+    RefreshInventory();
+  }
+
   private void InitReferences()
   {
     cardSlots = GetComponentsInChildren<InventorySlot>();

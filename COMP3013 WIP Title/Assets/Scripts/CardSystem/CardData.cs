@@ -1,5 +1,7 @@
 
+using System;
 
+[Serializable]
 public class CardData
 {
   public int id = 0;
