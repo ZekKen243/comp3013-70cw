@@ -14,7 +14,7 @@ public class CardGameObject : MonoBehaviour
 
   public void Awake()
   {
-  
+    // ! dev purpose 
     protoId = Random.Range(0, 5);
     UpdateCardObject();
   }
