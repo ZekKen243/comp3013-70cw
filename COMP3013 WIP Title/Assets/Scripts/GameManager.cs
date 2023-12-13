@@ -5,6 +5,45 @@ using UnityEngine.SceneManagement;
 
 class GameManager: MonoBehaviour
 {
+  public bool isGamePaused = false;
+  private static GameManager instance = null;
+
+  public static GameManager Instance
+  {
+    get
+    {
+      if (instance == null)
+      {
+        GameObject go = new();
+        instance = go.AddComponent<GameManager>();
+      }
+
+      return instance;
+    }
+  }
+
+  private void Awake()
+  {
+    CheckInstanceState();
+    Initialise();
+  }
+
+  private void CheckInstanceState()
+  {
+    if (instance == null)
+    {
+      instance = this;
+      DontDestroyOnLoad(gameObject);
+      return;
+    }
+
+    Destroy(gameObject);
+  }
+
+  private void Initialise()
+  {
+    CardProtoManager.Instance.Initialise();
+  }
 
   public void TogglePause()
   {
@@ -23,36 +62,9 @@ class GameManager: MonoBehaviour
     SceneManager.LoadScene(gameScene.ToString());
   }
 
-  void Awake()
-  {
-    if (instance == null)
-    {
-      instance = this;
-      DontDestroyOnLoad(gameObject);
-    }
-    else if (instance != this)
-    {
-      Destroy(gameObject);
-    }
-  }
 
-  public static GameManager Instance
-  {
-    get
-    {
-      if (instance == null)
-      {
-        GameObject go = new GameObject();
-        instance = go.AddComponent<GameManager>();
-      }
 
-      return instance;
-    }
-  }
 
-  
-  public bool isGamePaused = false;
-  private static GameManager instance = null;
 }
 
 
