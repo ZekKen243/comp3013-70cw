@@ -13,8 +13,10 @@ public enum CardElement
   NONE,
   FIRE,
   ICE,
-  WIND
+  WIND,
+  MAX_ELEMENTS
 }
+
 
 public enum CardSlotType
 {
