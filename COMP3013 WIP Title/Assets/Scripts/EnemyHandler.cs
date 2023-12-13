@@ -6,11 +6,13 @@ public class EnemyHandler : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
     FloatingHealthBar healthBar;
+    private CardEnemyDrop cardDrop = null;
 
     void Start()
     {
         currentHealth = maxHealth;
         healthBar = GetComponentInChildren<FloatingHealthBar>();
+        cardDrop = GetComponent<CardEnemyDrop>();
     }
 
     public void TakeDamage(int damage)
@@ -27,5 +29,9 @@ public class EnemyHandler : MonoBehaviour
     {
         Debug.Log("Enemy died!");
         gameObject.SetActive(false);
+        if(cardDrop)
+        {
+            cardDrop.DropCard();
+        }
     }
 }
