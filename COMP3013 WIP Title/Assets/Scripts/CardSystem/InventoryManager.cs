@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData>;
+using CardCollection = System.Collections.Generic.SortedDictionary<int, CardItem>;
 
 public class InventoryManager : MonoBehaviour 
 {
@@ -31,36 +31,14 @@ public class InventoryManager : MonoBehaviour
   //! TEST PURPOSE
   private void InitTestCards()
   {
+    AutoGiveCard(1);
+    AutoGiveCard(2);
 
-    CardData fireCard = new CardData
-    {
-      id = 1,
-      name = "Fire Card",
-      element = CardElement.FIRE
-    };
-
-    CardData iceCard = new CardData
-    {
-      id = 2,
-      name = "Ice Card",
-      element = CardElement.ICE
-    };
-
-    CardData windCard = new CardData
-    {
-      id = 3,
-      name = "Wind Card",
-      element = CardElement.WIND
-    };
-
-    SetCard(0, fireCard);
-    SetCard(2, iceCard);
-    SetCard(3, windCard);
   }
 
   public void EquipCard(int index)
   {
-    CardData cardData = GetCard(index);
+    CardItem cardData = GetCard(index);
     if(cardData == null)
     {
       return;
@@ -79,14 +57,35 @@ public class InventoryManager : MonoBehaviour
 
   public void SwapCards(int srcIndex, int targetIndex)
   {
-    CardData srcCard = GetCard(srcIndex);
-    CardData targetCard = GetCard(targetIndex);
+    CardItem srcCard = GetCard(srcIndex);
+    CardItem targetCard = GetCard(targetIndex);
 
     SetCard(srcIndex, targetCard);
     SetCard(targetIndex, srcCard);
   }
 
-  public bool AutoSetCard(CardData card)
+  public bool AutoGiveCard(int proto_id)
+  {
+    int index = GetEmptySlotIndex();
+    if(index < 0)
+    {
+      return false;
+    }
+
+    CardProtoData protoData = CardProtoManager.Instance.GetCardProto(proto_id);
+    if(protoData == null)
+    {
+      Debug.LogErrorFormat("Cannot aouto give card by card proto id {0}, no proto found.", proto_id);
+      return false;
+    }
+
+    CardItem cardItem = CardItem.FromProto(index, protoData);
+  
+    SetCard(index, cardItem);
+    return true;
+  }
+
+  public bool AutoSetCard(CardItem card)
   {
     int index = GetEmptySlotIndex();
     if(index < 0)
@@ -98,15 +97,15 @@ public class InventoryManager : MonoBehaviour
     return true;
   }
 
-  public void SetCard(int index, CardData card)
+  public void SetCard(int index, CardItem card)
   {
     cardCollection[index] = card;
     inventoryWnd.UpdateSlot(index);
   }
 
-  public CardData GetCard(int index)
+  public CardItem GetCard(int index)
   {
-    CardData cardData;
+    CardItem cardData;
 
     if (cardCollection.TryGetValue(index, out cardData))
     {

@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData>;
+using CardCollection = System.Collections.Generic.SortedDictionary<int, CardItem>;
 
 public class EquipmentManager : MonoBehaviour 
 {
@@ -29,13 +29,13 @@ public class EquipmentManager : MonoBehaviour
 
   private void InitTestCards()
   {
-    SetCard(0, new CardData { id = 3, element = CardElement.ICE });
+    SetCard(0, new CardItem { id = 3, element = CardElement.ICE });
   }
 
   public void SwapCards(int srcIndex, int targetIndex)
   {
-    CardData srcCard = GetEquipedCard(srcIndex);
-    CardData targetCard = GetEquipedCard(targetIndex);
+    CardItem srcCard = GetEquipedCard(srcIndex);
+    CardItem targetCard = GetEquipedCard(targetIndex);
 
     SetCard(srcIndex, targetCard);
     SetCard(targetIndex, srcCard);
@@ -43,7 +43,7 @@ public class EquipmentManager : MonoBehaviour
 
   public void UnequipCard(int index)
   {
-    CardData cardData = GetEquipedCard(index);
+    CardItem cardData = GetEquipedCard(index);
     if(cardData == null)
     {
       return;
@@ -73,15 +73,15 @@ public class EquipmentManager : MonoBehaviour
     return -1;
   }
 
-  public void SetCard(int index, CardData card)
+  public void SetCard(int index, CardItem card)
   {
     equipedCards[index] = card;
     equipmentWnd.UpdateSlot(index);
   }
 
-  public CardData GetEquipedCard(int index)
+  public CardItem GetEquipedCard(int index)
   {
-    CardData cardData;
+    CardItem cardData;
 
     if (equipedCards.TryGetValue(index, out cardData))
     {

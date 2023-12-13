@@ -4,33 +4,52 @@ using UnityEngine;
 public class CardGameObject : MonoBehaviour
 {
 
+  public int protoId = 0;
   public bool canPickUp = true;
   public bool animate = true;
   
   [Range(0.0f, 300.0f), ]
   public float rotationSpeed = 30.0f;
 
-  private CardData cardData;
 
   public void Awake()
   {
-    cardData = new CardData() { id = transform.GetSiblingIndex() + 20, element = CardElement.FIRE, level = 2, name = "Wind Card" };
+  
+    protoId = Random.Range(0, 5);
     UpdateCardObject();
   }
 
-  private void UpdateCardObject()
+  public void UpdateCardObject()
   {
     Renderer renderer = GetComponent<Renderer>();
-    switch(cardData.element)
+    Light light = GetComponentInChildren<Light>();
+    CardProtoData protoData = CardProtoManager.Instance.GetCardProto(protoId);
+
+    if(renderer == null || light == null || protoData == null)
+    {
+      // todo: add a more specific debug log
+      Debug.Log("Can't update card game object appearance.");
+      return;
+    }
+
+    switch(protoData.elementEnum)
     {
       case CardElement.FIRE:
       {
         renderer.material.color = Color.red;
+        light.color = Color.red;
         break;
       }
       case CardElement.WIND:
       {
         renderer.material.color = Color.green;
+        light.color = Color.green;
+        break;
+      }
+      case CardElement.ICE:
+      {
+        renderer.material.color = Color.blue;
+        light.color = Color.blue;
         break;
       }
 
@@ -64,7 +83,7 @@ public class CardGameObject : MonoBehaviour
 
   private void PickUp()
   {
-    if(!canPickUp || !InventoryManager.Instance.AutoSetCard(cardData))
+    if(!canPickUp || !InventoryManager.Instance.AutoGiveCard(protoId))
     {
       return;
     }
