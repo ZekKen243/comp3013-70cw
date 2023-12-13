@@ -32,8 +32,8 @@ class EquipmentSlot : CardSlot, IDropHandler, IPointerClickHandler
       return;
     }
 
-    CardData dropCardData = cardIcon.cardData;
-    CardData thisCardData = cardData;
+    CardItem dropCardData = cardIcon.cardData;
+    CardItem thisCardData = cardData;
 
     EquipmentManager.Instance.SetCard(index, dropCardData);
     InventoryManager.Instance.SetCard(cardIcon.slotIndex, thisCardData);

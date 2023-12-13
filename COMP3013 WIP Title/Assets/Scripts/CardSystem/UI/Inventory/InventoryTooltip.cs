@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InventoryTooltip : MonoBehaviour
 {
-  private CardData cardData = null;
+  private CardItem cardData = null;
   
   public TextMeshProUGUI cardTitle = null;
 
-  public void Open(ref CardData _cardData)
+  public void Open(ref CardItem _cardData)
   {
     cardData = _cardData;
     UpdateText();

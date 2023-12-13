@@ -41,7 +41,7 @@ public class InventoryWindow : BaseWindow
     cardSlots[index].SetCardData(InventoryManager.Instance.GetCard(index));
   }
 
-  public void OpenTooltip(CardData cardData)
+  public void OpenTooltip(CardItem cardData)
   {
     if(inventoryTooltip == null)
     {

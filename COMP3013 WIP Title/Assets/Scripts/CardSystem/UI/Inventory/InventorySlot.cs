@@ -36,8 +36,8 @@ public class InventorySlot : CardSlot, IPointerEnterHandler, IPointerExitHandler
 
   private void OnDropEquipmentCard(CardIcon cardIcon)
   {
-    CardData thisCardData = cardData;
-    CardData dropCardData = cardIcon.cardData;
+    CardItem thisCardData = cardData;
+    CardItem dropCardData = cardIcon.cardData;
 
     InventoryManager.Instance.SetCard(index, dropCardData); 
     EquipmentManager.Instance.SetCard(cardIcon.slotIndex, thisCardData);
