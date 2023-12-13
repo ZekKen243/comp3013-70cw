@@ -114,7 +114,7 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
   }
 
-  public CardData cardData
+  public CardItem cardData
   {
     get
     {

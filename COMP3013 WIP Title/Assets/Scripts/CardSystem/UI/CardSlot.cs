@@ -16,7 +16,7 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
     cardIcon = GetComponentInChildren<CardIcon>();
   }
 
-  public void SetCardData(CardData data)
+  public void SetCardData(CardItem data)
   {
     cardData = data;
     UpdateIcon();
@@ -48,7 +48,7 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
   }
 
   private CardIcon cardIcon = null;
-  public CardData cardData = null;
+  public CardItem cardData = null;
   public CardSlotType slotType = CardSlotType.NONE;
 }
 
