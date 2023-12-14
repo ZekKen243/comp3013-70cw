@@ -32,7 +32,10 @@ public class PlayerAttackHandler : MonoBehaviour
 
             foreach (Collider enemy in enemiesHit)
             {
-                enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
+                if (enemy.CompareTag("Enemy"))
+                {
+                    enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
+                }
             }
 
             damageDealtInAnimationLoop = true;
