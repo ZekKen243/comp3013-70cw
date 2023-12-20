@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour
 
     public Stat attack;
     public Stat defence;
+    public float movementSpeed;
 
     void Awake()
     {

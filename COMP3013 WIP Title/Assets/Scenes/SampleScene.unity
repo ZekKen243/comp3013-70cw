@@ -248,7 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e46d4754e7a4b41b0ac5515cce848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castScript: {fileID: 0}
 --- !u!65 &81601712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -348,7 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e46d4754e7a4b41b0ac5515cce848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castScript: {fileID: 579216855}
 --- !u!1 &135853876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,7 +1890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f91cbaa910e46408600bcb41b7f732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 0
 --- !u!114 &522193773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1910,6 +1908,7 @@ MonoBehaviour:
     baseValue: 0
   defence:
     baseValue: 0
+  movementSpeed: 12
 --- !u!1 &579216847
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,7 +2077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firingPoint: {fileID: 401538736}
-  projectilePrefab: {fileID: 2657577936574637295, guid: 03686e171431d4e4aa613ea951b81da9, type: 3}
+  projectilePrefab: {fileID: 2657577936574637295, guid: 93868917d06f4f442bef922c3c4d2b30, type: 3}
   firingSpeed: 0.5
 --- !u!114 &579216855
 MonoBehaviour:
@@ -2459,7 +2458,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 050cecb64c31aab4eba8627390150496, type: 2}
+  - {fileID: 2100000, guid: 5e2429dd1d27d6443b5c40c6b70c72ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3077,7 +3076,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.57328373, y: -0, z: -0, w: 0.819357}
-  m_LocalPosition: {x: 0, y: 22.33, z: -7.19}
+  m_LocalPosition: {x: 0, y: 32, z: -10.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5204,7 +5203,20 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 522193771}
-    m_RemovedComponents: []
+    - target: {fileID: 6243609029786306102, guid: 2b1bc8c14e617494cb12a80124b4feab, type: 3}
+      propertyPath: sightRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243609029786306102, guid: 2b1bc8c14e617494cb12a80124b4feab, type: 3}
+      propertyPath: attackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243609029786306102, guid: 2b1bc8c14e617494cb12a80124b4feab, type: 3}
+      propertyPath: walkPointRange
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9216830412822804481, guid: 2b1bc8c14e617494cb12a80124b4feab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
