@@ -35,7 +35,6 @@ public class MeleeEnemy : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patrolling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        //OnDrawGizmosSelected();
 
     }
 
@@ -65,13 +64,17 @@ public class MeleeEnemy : MonoBehaviour
     {
         //Debug.Log("Attacking");
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        // Calculate the direction to the player without affecting the vertical rotation
+        Vector3 playerDirection = new Vector3(player.position.x, transform.position.y, player.position.z) - transform.position;
+
+        // Rotate the enemy's body to face the player
+        transform.rotation = Quaternion.LookRotation(playerDirection);
         if (!alreadyAttacked)
         {
             sword.GetComponent<EnemySwordBehaviour>().Attack();
 
             alreadyAttacked = true;
-            CancelInvoke(nameof(ResetAttack));
+            CancelInvoke(nameof(ResetAttack)); //prevents repeated attack animations
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
@@ -96,12 +99,13 @@ public class MeleeEnemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, attackRange);
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(transform.position, sightRange);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
 
 }
