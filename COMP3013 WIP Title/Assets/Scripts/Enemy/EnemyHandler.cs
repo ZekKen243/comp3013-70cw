@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHandler : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     FloatingHealthBar healthBar;
 
     void Start()

@@ -71,7 +71,7 @@ public class MeleeEnemy : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(playerDirection);
         if (!alreadyAttacked)
         {
-            sword.GetComponent<EnemySwordBehaviour>().Attack();
+            sword.GetComponent<EnemySwordBehaviour>().Attack(false);
 
             alreadyAttacked = true;
             CancelInvoke(nameof(ResetAttack)); //prevents repeated attack animations
