@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour
     private bool isInPhase2Transition = false;
     private float attackCooldown = 0f;
 
-    private bool isGroundSlamAnimFinished;
+    public bool isGroundSlamAnimFinished;
     public GameObject groundSlamProjectilePrefab;
     public Transform groundSlamProjectileSpawnPoint;
 
@@ -45,13 +45,13 @@ public class BossController : MonoBehaviour
         phase1CloseAttacks = new System.Action[]
         {
             GroundSlamAttackStart,
-            CloseRangeHorizontalSwordAttack
+            HorizontalSwordAttack
         };
 
         phase2CloseAttacks = new System.Action[]
         {
-            CloseRangeSummonMinionsAttack,
-            CloseRangeSwordSpinAttack
+            SummonMinionsAttack,
+            SwordSpinAttack
         };
     }
 
@@ -77,7 +77,7 @@ public class BossController : MonoBehaviour
                     if (Vector3.Distance(transform.position, player.position) > attackRange)
                     {
                         // only one long-range attack in phase 2, so no need to randomly iterate through array
-                        FarRangeProjectileBarrageAttack();
+                        ProjectileBarrageAttack();
                     }
                     else
                     {
@@ -101,7 +101,7 @@ public class BossController : MonoBehaviour
                 if (Vector3.Distance(transform.position, player.position) > attackRange)
                 {
                     // only one long-range attack in phase 2, so no need to randomly iterate through array
-                    FarRangeMultipleProjectileAttack();
+                    MultipleProjectileAttack();
                 }
                 else
                 {
@@ -139,29 +139,34 @@ public class BossController : MonoBehaviour
         Instantiate(groundSlamProjectilePrefab, groundSlamProjectileSpawnPoint.position, groundSlamProjectileSpawnPoint.rotation);
     }
 
-    void CloseRangeHorizontalSwordAttack()
+    void HorizontalSwordAttack()
     {
         animator.SetTrigger("HorizontalSwordAttackTrigger");
-        sword.GetComponent<EnemySwordBehaviour>().Attack(true);
+        sword.GetComponent<EnemySwordBehaviour>().Attack();
     }
 
-    void FarRangeMultipleProjectileAttack()
+    void MultipleProjectileAttack()
     {
-        
-        foreach (Transform spawnPoint in projectileSpawnPoints)
+
+        animator.SetTrigger("MultipleProjectilesAttackTrigger");
+
+        for (int i = 0; i < 3; i++)
         {
-            int randomIndex = Random.Range(0, summoningEnemyPrefabs.Length);
-            GameObject selectedEnemyPrefab = summoningEnemyPrefabs[randomIndex];
-            Instantiate(selectedEnemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            // Instantiate the single projectile prefab at the current spawn point
+            Instantiate(rangedAttackProjectilePrefab, projectileSpawnPoints[i].position, projectileSpawnPoints[i].rotation);
         }
     }
 
-    void FarRangeProjectileBarrageAttack()
+    void ProjectileBarrageAttack()
     {
-        Debug.Log("Projectile Barrage Attack");
+        animator.SetTrigger("ProjectileBarrageAttackTrigger");
+        foreach (Transform spawnPoint in projectileSpawnPoints)
+        {
+            Instantiate(rangedAttackProjectilePrefab, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
-    void CloseRangeSummonMinionsAttack()
+    void SummonMinionsAttack()
     {
         animator.SetTrigger("SummoningMinionsTrigger");
         foreach (Transform spawnPoint in summoningSpawnPoints)
@@ -172,9 +177,9 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void CloseRangeSwordSpinAttack()
+    void SwordSpinAttack()
     {
         animator.SetTrigger("SwordSpinAttackTrigger");
-        sword.GetComponent<EnemySwordBehaviour>().Attack(true);
+        sword.GetComponent<EnemySwordBehaviour>().Attack();
     }
 }

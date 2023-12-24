@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CharacterStats : MonoBehaviour
     public Stat attack;
     public Stat defence;
     public float movementSpeed;
+    public GameObject deathUI;
+    public Slider healthBarUI;
 
     void Awake()
     {
@@ -22,6 +25,13 @@ public class CharacterStats : MonoBehaviour
         {
             TakeDamage(10);
         }
+
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBarUI.value = currentHealth;
     }
 
     public void TakeDamage(int damage)
@@ -38,10 +48,11 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public virtual void Die()
+    public void Die()
     {
-        //Die
-        //Method is meant to be overwritten
+        Destroy(gameObject);
+        deathUI.SetActive(true);
+        Time.timeScale = 0f;
         Debug.Log(transform.name + "died");
     }
 }

@@ -11,14 +11,12 @@ public class EnemySwordBehaviour : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask playerLayer;
 
-    public void Attack(bool isBossAttack)
+    public void Attack()
     {
         if (!damageDealtInAnimationLoop)
         {
-            if (!isBossAttack)
-            {
-                animator.SetTrigger("Attack");
-            }
+
+            animator.SetTrigger("Attack");
 
             Collider[] playerHit = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
 
@@ -28,7 +26,6 @@ public class EnemySwordBehaviour : MonoBehaviour
                 {
                     player.GetComponent<CharacterStats>().TakeDamage(damage);
                 }
-
 
                 damageDealtInAnimationLoop = true;
             }
