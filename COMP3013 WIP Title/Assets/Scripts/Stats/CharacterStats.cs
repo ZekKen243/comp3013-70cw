@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +20,7 @@ public class CharacterStats : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) && Debug.isDebugBuild)
         {
             TakeDamage(10);
         }
@@ -31,6 +30,11 @@ public class CharacterStats : MonoBehaviour
 
     private void UpdateHealthBar()
     {
+        if(!healthBarUI)
+        {
+            return;
+        }
+
         healthBarUI.value = currentHealth;
     }
 

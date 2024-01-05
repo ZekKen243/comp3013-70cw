@@ -25,15 +25,19 @@ public class InventoryManager : MonoBehaviour
 
   public void Start()
   {
-    InitTestCards();
+    DEBUG_GiveTestCards();
   }
 
   //! TEST PURPOSE
-  private void InitTestCards()
+  private void DEBUG_GiveTestCards()
   {
-    AutoGiveCard(1);
-    AutoGiveCard(2);
+    if(!Debug.isDebugBuild)
+    {
+      return;
+    }
 
+    AutoGiveCard(2);
+    AutoGiveCard(1);
   }
 
   public void EquipCard(int index)

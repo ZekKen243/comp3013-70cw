@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
+public struct ProjectilePair
+{
+    public CardElement element;
+    public GameObject prefab;
+}
+
+
 public class PlayerCast : MonoBehaviour
 {
+
     [SerializeField] 
     private Transform firingPoint;
 
     [SerializeField] 
-    private GameObject projectilePrefab;
+    private ProjectilePair[] projectilePrefabs;
 
     [SerializeField] 
     private float firingSpeed;
@@ -24,20 +34,52 @@ public class PlayerCast : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Shoot();
-        }
+        OnEquipmentInput();
     }
 
-    // Update is called once per frame
-
-    public void Shoot()
+    private void OnEquipmentInput()
     {
-        if (lastTimeShot + firingSpeed <= Time.time)
+        int usedSlot = GetUsedSlotIndex();
+        if(usedSlot == -1)
         {
-            lastTimeShot = Time.time;
-            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            return;
         }
+
+        Shoot(EquipmentManager.Instance.GetEquipedCard(usedSlot));
+    }
+
+    private int GetUsedSlotIndex()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public void Shoot(CardItem cardItem)
+    {
+        if (lastTimeShot + firingSpeed > Time.time || cardItem == null)
+        {
+            return;
+        }
+
+
+        foreach(ProjectilePair pair in projectilePrefabs)
+        {
+            if(pair.element != cardItem.element)
+            {
+                continue;
+            }
+
+            Instantiate(pair.prefab, firingPoint.position, firingPoint.rotation);
+        }
+
+
+        lastTimeShot = Time.time;
     }
 }
