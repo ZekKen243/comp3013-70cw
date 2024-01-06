@@ -13,6 +13,7 @@ public class InventoryTooltip : MonoBehaviour
   public TextMeshProUGUI swordAttack = null;
   public TextMeshProUGUI magicAttack = null;
   public TextMeshProUGUI moveSpeed = null;
+  public TextMeshProUGUI defence = null;
   
 
   public void Open(ref CardItem _cardData)
@@ -39,7 +40,7 @@ public class InventoryTooltip : MonoBehaviour
     swordAttack.text = string.Format("Sword Attack +{0}", cardData.stats.swordAttack);
     magicAttack.text = string.Format("Magic Attack +{0}", cardData.stats.magicAttack);
     moveSpeed.text = string.Format("Move Speed +{0}", cardData.stats.speed);
-    
+    defence.text = string.Format("Defence +{0}", cardData.stats.defence);
     
   }
 

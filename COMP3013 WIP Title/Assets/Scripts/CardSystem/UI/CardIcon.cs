@@ -26,37 +26,37 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
   private Sprite GetSpriteIconByElement()
   {
     string spritePath = "cards/default_card_icon";
-
+  
     if(cardData == null)
     {
-      return Resources.Load<Sprite>("cards/empty_card_icon");
+      return null;
     }
 
     switch(cardData.element)
     {
       case CardElement.NONE:
-        break;
+        return null;
 
       case CardElement.FIRE:
       {
-        spritePath = "cards/fire_card_sprite";
+        spritePath = "cards/fire_card";
         break;
       }
 
       case CardElement.WIND:
       {
-        spritePath = "cards/wind_card_sprite";
+        spritePath = "cards/wind_card";
         break;
       }
 
       case CardElement.ICE:
       {
-        spritePath = "cards/ice_card_sprite";
+        spritePath = "cards/ice_card";
         break;
       }
 
       default:
-        break;
+        return null;
     }
 
     return Resources.Load<Sprite>(spritePath);
@@ -69,7 +69,13 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
       Debug.LogErrorFormat("Can't update the sprite for card icon, no image component found for slot index {0}, slot type {1}", cardSlot.index, slotType);
       return;
     }
+    else if(icon == null)
+    {
+      iconImage.color = new Color(0, 0, 0, 0);
+      return;
+    }
 
+    iconImage.color = Color.white;
     iconImage.sprite = icon;
   }
 

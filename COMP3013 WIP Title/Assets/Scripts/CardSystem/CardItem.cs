@@ -8,6 +8,7 @@ public class CardItemStats {
   public int swordAttack = 0;
   public int maxHp = 0;
   public int speed = 0;
+  public int defence = 0;
 
 }
 

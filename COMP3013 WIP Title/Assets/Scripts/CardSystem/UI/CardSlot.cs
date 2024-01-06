@@ -14,6 +14,7 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
   private void InitReferences()
   {
     cardIcon = GetComponentInChildren<CardIcon>();
+    UpdateIcon();
   }
 
   public void SetCardData(CardItem data)
