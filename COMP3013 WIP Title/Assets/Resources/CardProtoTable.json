@@ -5,24 +5,32 @@
       "proto_id": 0,
       "name": "Cursed Wind Card",
       "min_level": 20,
+      "type": "SPELL",
       "element": "WIND"
     },
     {
       "proto_id": 1,
       "name": "Ice Card",
       "min_level": 2,
-      "element": "ICE"
+      "type": "SPELL",
+      "element": "ICE",
+
+      "stats": {
+        "magicAttack": 5
+      }
     },
     {
       "proto_id": 2,
       "name": "Fire Card",
       "min_level": 4,
+      "type": "SPELL",
       "element": "FIRE"
     },
     {
       "proto_id": 3,
       "name": "Wind Card",
       "min_level": 5,
+      "type": "SPELL",
       "element": "WIND"
     },
 
@@ -30,6 +38,7 @@
       "proto_id": 4,
       "name": "Magic Fire Card",
       "min_level": 10,
+      "type": "SPELL",
       "element": "FIRE"
     },
 
@@ -37,6 +46,7 @@
       "proto_id": 5,
       "name": "Magic Ice Card",
       "min_level": 10,
+      "type": "SPELL",
       "element": "ICE"
     },
 
@@ -44,6 +54,7 @@
       "proto_id": 6,
       "name": "Magic Wind Card",
       "min_level": 10,
+      "type": "SPELL",
       "element": "Wind"
     }
   ]

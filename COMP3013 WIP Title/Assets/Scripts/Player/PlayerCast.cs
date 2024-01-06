@@ -77,6 +77,7 @@ public class PlayerCast : MonoBehaviour
             }
 
             Instantiate(pair.prefab, firingPoint.position, firingPoint.rotation);
+            break;
         }
 
 

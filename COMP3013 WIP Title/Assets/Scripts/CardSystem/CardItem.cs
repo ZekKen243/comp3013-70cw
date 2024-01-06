@@ -1,6 +1,17 @@
 
+using System;
 
 
+[Serializable]
+public class CardItemStats {
+  public int magicAttack = 0;
+  public int swordAttack = 0;
+  public int maxHp = 0;
+  public int speed = 0;
+
+}
+
+[Serializable]
 public class CardItem
 {
   public int id = 0;
@@ -9,7 +20,10 @@ public class CardItem
   public string name = "";
   public int minLevel = 0;
   public CardElement element = CardElement.NONE;
-  
+  public CardType type = CardType.NONE;
+
+  public CardItemStats stats = new();
+
   // todo: Add attributes
   // ex:
   // public CardAttribute[] cardAttributes;
@@ -23,7 +37,9 @@ public class CardItem
       protoId = protoData.proto_id,
       name = protoData.name,
       minLevel = protoData.min_level,
-      element = protoData.elementEnum
+      element = protoData.elementEnum,
+      type = protoData.typeEnum,
+      stats = protoData.stats
     };
   }
 }
