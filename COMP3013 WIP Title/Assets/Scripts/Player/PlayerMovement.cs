@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,11 +5,10 @@ public class PlayerMovement : MonoBehaviour
     private GameObject player;
     private CharacterStats statsManager;
     public float moveSpeed;
-
+    public float rotationSpeed;
 
     private Rigidbody rigidBody;
     private Camera mainCamera;
-
 
     void Start()
     {
@@ -27,16 +24,15 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = FindObjectOfType<Camera>();
     }
 
-
-    void FixedUpdate()
+    void Update()
     {
-        UpdateBodyRotation();
+        OnDrawGizmos();
         UpdateBodyVelocity();
     }
 
-    private void UpdateBodyRotation()
+    private void OnDrawGizmos()
     {
-        if(!mainCamera)
+        if (!mainCamera)
         {
             Debug.LogError("mainCamera reference is null");
             return;
@@ -44,20 +40,24 @@ public class PlayerMovement : MonoBehaviour
 
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLenght;
+        float rayLength;
 
-        if (groundPlane.Raycast(cameraRay, out rayLenght))
+        if (groundPlane.Raycast(cameraRay, out rayLength))
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLenght);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+            pointToLook.y = transform.position.y; // Keep the same height as the player
 
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+            transform.LookAt(pointToLook);
+
+            // Draw the raycast using Gizmos
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(cameraRay.origin, pointToLook);
         }
     }
 
     private void UpdateBodyVelocity()
     {
-        if(!rigidBody)
+        if (!rigidBody)
         {
             Debug.LogError("rigidBody reference is null");
             return;
@@ -65,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
         rigidBody.velocity = GetMoveVelocity();
     }
-
 
     private Vector3 GetMoveVelocity()
     {

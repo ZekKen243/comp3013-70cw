@@ -26,13 +26,13 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(10);
         }
 
-        UpdateHealthBar();
+        //UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
-    {
-        healthBarUI.value = currentHealth;
-    }
+    //private void UpdateHealthBar()
+    //{
+    //    healthBarUI.value = currentHealth;
+    //}
 
     public void TakeDamage(int damage)
     {
