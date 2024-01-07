@@ -1,4 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Device;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public float rotationSpeed;
 
+
     private Rigidbody rigidBody;
     private Camera mainCamera;
+    public Animator animator;
+
 
     void Start()
     {
@@ -24,20 +31,23 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = FindObjectOfType<Camera>();
     }
 
+
     void Update()
     {
-        OnDrawGizmos();
+        UpdateBodyRotation();
         UpdateBodyVelocity();
-    }
 
-    private void OnDrawGizmos()
-    {
-        if (!mainCamera)
+        if (rigidBody.velocity.magnitude > 0)
         {
-            Debug.LogError("mainCamera reference is null");
-            return;
+            animator.SetTrigger("Walking");
         }
-
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
+    }
+    private void UpdateBodyRotation()
+    {
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
@@ -49,15 +59,12 @@ public class PlayerMovement : MonoBehaviour
 
             transform.LookAt(pointToLook);
 
-            // Draw the raycast using Gizmos
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(cameraRay.origin, pointToLook);
         }
     }
 
     private void UpdateBodyVelocity()
     {
-        if (!rigidBody)
+        if(!rigidBody)
         {
             Debug.LogError("rigidBody reference is null");
             return;
@@ -65,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
         rigidBody.velocity = GetMoveVelocity();
     }
+
 
     private Vector3 GetMoveVelocity()
     {

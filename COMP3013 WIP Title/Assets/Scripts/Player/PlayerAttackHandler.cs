@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttackHandler : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerAttackHandler : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int swordDamage = 30;
+    public GameObject fireball;
 
     private bool damageDealtInAnimationLoop = false;
 
@@ -24,9 +26,10 @@ public class PlayerAttackHandler : MonoBehaviour
 
     void Attack()
     {
-        if(!damageDealtInAnimationLoop)
+        Debug.Log("Attacking");
+        if (!damageDealtInAnimationLoop)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Attacking");
 
             Collider[] enemiesHit = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
@@ -45,7 +48,10 @@ public class PlayerAttackHandler : MonoBehaviour
     void ResetDamageDealtFlag()
     {
         damageDealtInAnimationLoop = false;
+        animator.SetTrigger("Idle");
+        Debug.Log("Resetting");
     }
+
 
     void OnDrawGizmosSelected()
     {
