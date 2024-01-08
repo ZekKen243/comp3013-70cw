@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InventoryTooltip : MonoBehaviour
 {
+
   private CardItem cardData = null;
   
   public TextMeshProUGUI cardTitle = null;
@@ -35,7 +36,7 @@ public class InventoryTooltip : MonoBehaviour
     cardType.text = string.Format("Type: {0}", cardData.type.ToString());
 
     // stats
-    // todo: Maybe use enums + hash map for flexibility
+    // todo: Maybe use enums + hash map for flexibility. It might require the whole stats system to be changed
     maxHp.text = string.Format("Max HP +{0}", cardData.stats.maxHp);
     swordAttack.text = string.Format("Sword Attack +{0}", cardData.stats.swordAttack);
     magicAttack.text = string.Format("Magic Attack +{0}", cardData.stats.magicAttack);

@@ -7,8 +7,22 @@ public class EquipmentWindow : BaseWindow
   public void Awake()
   {
     InitReferences();
+    RefreshEequipment();
+  }
+
+  public void Start()
+  {
+
   }
   
+  public void RefreshEequipment()
+  {
+    for(int i = 0; i < cardSlots.Length; ++i)
+    {
+      UpdateSlot(i);
+    }
+  }
+
   private void InitReferences()
   {
     cardSlots = GetComponentsInChildren<EquipmentSlot>();

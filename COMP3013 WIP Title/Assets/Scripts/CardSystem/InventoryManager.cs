@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 
   static public InventoryManager Instance = null;
   public InventoryWindow inventoryWnd = null;
-  private CardCollection cardCollection = new CardCollection();
+  private CardCollection cardCollection = new();
 
 
   public void Awake()

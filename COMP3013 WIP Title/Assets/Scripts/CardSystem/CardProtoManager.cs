@@ -14,7 +14,7 @@ public class CardProtoData
   public string element;
   public string type;
 
-  public CardItemStats stats;
+  public Stats stats;
 
   // todo: Add attributes
   // ex:
@@ -77,6 +77,8 @@ public class CardProtoManager
     string jsonFilePath = Application.dataPath + "/Resources/CardProtoTable.json";
 
     string jsonContent = System.IO.File.ReadAllText(jsonFilePath);
+    
+
     CardProtoData[] cardProtoArr = JsonHelper.FromJson<CardProtoData>(jsonContent);
 
     foreach(CardProtoData cardProto in cardProtoArr)

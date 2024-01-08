@@ -1779,6 +1779,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4136820165459755720, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
+      propertyPath: equipmentWnd
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4315110740564161601, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
       propertyPath: m_Text
       value: 4
@@ -2131,7 +2135,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 922175871913928, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
+    - {fileID: 4136820165459755720, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3226,8 +3232,40 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: stats.maxHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: stats.speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
       propertyPath: movementSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: stats.defence
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: stats.magicAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: stats.swordAttack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598398676304497502, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598398676304497502, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598398676304497502, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7776654268963026979, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
       propertyPath: m_Name

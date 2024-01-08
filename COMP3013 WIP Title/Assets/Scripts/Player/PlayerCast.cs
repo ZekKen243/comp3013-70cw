@@ -18,10 +18,10 @@ public class PlayerCast : MonoBehaviour
     private Transform firingPoint;
 
     [SerializeField] 
-    private ProjectilePair[] projectilePrefabs;
+    private float firingSpeed;
 
     [SerializeField] 
-    private float firingSpeed;
+    private ProjectilePair[] projectilePrefabs;
 
     public static PlayerCast Instance;
 
@@ -50,7 +50,8 @@ public class PlayerCast : MonoBehaviour
 
     private int GetUsedSlotIndex()
     {
-        for (int i = 0; i < 4; i++)
+        // todo: Use input system istead with mapped game actions
+        for (int i = 0; i < Constants.MAX_EQUIPMENT_SIZE; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {

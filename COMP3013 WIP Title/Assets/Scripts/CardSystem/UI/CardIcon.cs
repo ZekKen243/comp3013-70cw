@@ -35,7 +35,7 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     switch(cardData.element)
     {
       case CardElement.NONE:
-        return null;
+        break;
 
       case CardElement.FIRE:
       {
