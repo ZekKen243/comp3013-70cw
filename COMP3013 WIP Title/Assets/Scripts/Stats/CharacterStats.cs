@@ -29,8 +29,9 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(10);
         }
 
-        UpdateHealthBar();
+        //UpdateHealthBar();
     }
+
 
     private void UpdateHealthBar()
     {
@@ -41,6 +42,7 @@ public class CharacterStats : MonoBehaviour
 
         healthBarUI.value = currentHealth;
     }
+
 
     public void ResetStats()
     {
