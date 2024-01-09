@@ -25,7 +25,7 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Enemy died!");
         gameObject.SetActive(false);

@@ -7,6 +7,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class FireSpellProjectileBehaviour : MonoBehaviour
 {
+    public GameObject attacker = null;
+
     private Vector3 firingPoint;
 
     [SerializeField] 
@@ -46,7 +48,8 @@ public class FireSpellProjectileBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+            BattleManager.Instance.Attack(attacker, other.gameObject, AttackType.MAGIC);
+            //other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
             Destroy(this.gameObject);
         }
     }

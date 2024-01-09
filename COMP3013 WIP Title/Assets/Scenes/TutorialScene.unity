@@ -3099,6 +3099,10 @@ PrefabInstance:
       propertyPath: protoId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 450971541946246578, guid: ef235a2905c723b45a4a2d87477d0f99, type: 3}
+      propertyPath: dropChance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1889021524610564026, guid: ef235a2905c723b45a4a2d87477d0f99, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8385

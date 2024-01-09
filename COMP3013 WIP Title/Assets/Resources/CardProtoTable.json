@@ -16,7 +16,8 @@
       "element": "ICE",
 
       "stats": {
-        "magicAttack": 5
+        "magicAttack": 5,
+        "moveSpeed": 10
       }
     },
     {

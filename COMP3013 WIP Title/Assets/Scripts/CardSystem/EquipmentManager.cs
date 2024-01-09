@@ -13,7 +13,12 @@ public class EquipmentManager : MonoBehaviour
 
   private GameObject player = null;
 
-  public void Awake()
+  private void Start() 
+  {
+    RefreshPlayerStats();
+  }
+
+  private void Awake()
   {
     Instance = this;
     InitReferences();
@@ -34,14 +39,15 @@ public class EquipmentManager : MonoBehaviour
       return;
     }
 
-    CharacterStats charStats = player.GetComponent<CharacterStats>();
-    if(!charStats)
+    GameEntity playerEntity = player.GetComponent<GameEntity>();
+    if(!playerEntity)
     {
       Debug.LogErrorFormat("Failed to refresh player stats, player has no CharacterStats script.");
       return;
     }
 
-    charStats.ResetStats();
+    playerEntity.EntityStatsData.ResetCurrentStats();
+
 
     foreach(var pair in equipedCards)
     {
@@ -49,7 +55,8 @@ public class EquipmentManager : MonoBehaviour
       {
         continue;
       }
-      charStats.AddCardStats(pair.Value);
+
+      playerEntity.AddCardStats(pair.Value);
     }
   }
 
@@ -96,9 +103,10 @@ public class EquipmentManager : MonoBehaviour
 
   public void SetCard(int index, CardItem card)
   {
-    RefreshPlayerStats();
     equipedCards[index] = card;
     equipmentWnd.UpdateSlot(index);
+
+    RefreshPlayerStats();
   }
 
   public CardItem GetEquipedCard(int index)

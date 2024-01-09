@@ -40,7 +40,7 @@ public class InventoryTooltip : MonoBehaviour
     maxHp.text = string.Format("Max HP +{0}", cardData.stats.maxHp);
     swordAttack.text = string.Format("Sword Attack +{0}", cardData.stats.swordAttack);
     magicAttack.text = string.Format("Magic Attack +{0}", cardData.stats.magicAttack);
-    moveSpeed.text = string.Format("Move Speed +{0}", cardData.stats.speed);
+    moveSpeed.text = string.Format("Move Speed +{0}", cardData.stats.moveSpeed);
     defence.text = string.Format("Defence +{0}", cardData.stats.defence);
     
   }

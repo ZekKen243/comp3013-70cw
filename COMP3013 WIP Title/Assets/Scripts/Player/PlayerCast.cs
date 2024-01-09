@@ -77,7 +77,10 @@ public class PlayerCast : MonoBehaviour
                 continue;
             }
 
-            Instantiate(pair.prefab, firingPoint.position, firingPoint.rotation);
+            GameObject projectile = Instantiate(pair.prefab, firingPoint.position, firingPoint.rotation);
+            
+
+
             break;
         }
 

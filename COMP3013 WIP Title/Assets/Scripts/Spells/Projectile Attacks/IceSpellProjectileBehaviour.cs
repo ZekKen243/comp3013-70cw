@@ -7,6 +7,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class IceSpellProjectileBehaviour : MonoBehaviour
 {
+    public GameObject attacker = null;
     private Vector3 firingPoint;
 
     [SerializeField]
@@ -52,7 +53,8 @@ public class IceSpellProjectileBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             hasHitEnemy = true;
-            other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+            BattleManager.Instance.Attack(attacker, other.gameObject, AttackType.MAGIC);
+            //other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
             NavMeshAgent navMeshAgent = other.gameObject.GetComponent<NavMeshAgent>();
             StartCoroutine(TemporarySpeedReduction(navMeshAgent, speedReductionDuration));
             Destroy(this.gameObject.GetComponent<MeshRenderer>());

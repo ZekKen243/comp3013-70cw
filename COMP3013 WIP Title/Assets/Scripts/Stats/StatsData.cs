@@ -8,7 +8,7 @@ public class Stats
   public int magicAttack = 0;
   public int swordAttack = 0;
   public int maxHp = 0;
-  public int speed = 0;
+  public int moveSpeed = 0;
   public int defence = 0;
 
 
@@ -19,7 +19,7 @@ public class Stats
       magicAttack = stats1.magicAttack + stats2.magicAttack,
       swordAttack = stats1.swordAttack + stats2.swordAttack,
       maxHp = stats1.maxHp + stats2.maxHp,
-      speed = stats1.speed + stats2.speed,
+      moveSpeed = stats1.moveSpeed + stats2.moveSpeed,
       defence = stats1.defence + stats2.defence
     };
 
@@ -33,7 +33,7 @@ public class Stats
       magicAttack = stats1.magicAttack - stats2.magicAttack,
       swordAttack = stats1.swordAttack - stats2.swordAttack,
       maxHp = stats1.maxHp - stats2.maxHp,
-      speed = stats1.speed - stats2.speed,
+      moveSpeed = stats1.moveSpeed - stats2.moveSpeed,
       defence = stats1.defence - stats2.defence
     };
 

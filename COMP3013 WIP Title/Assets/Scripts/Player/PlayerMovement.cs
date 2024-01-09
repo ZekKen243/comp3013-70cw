@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private GameObject player;
-    private CharacterStats statsManager;
-    public float moveSpeed;
-
-
+    private GameEntity gameEntity;
     private Rigidbody rigidBody;
     private Camera mainCamera;
 
+    public int moveSpeed
+    {
+        get
+        {
+            return gameEntity.stats.moveSpeed;
+        }
+    }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        statsManager = player.GetComponent<CharacterStats>();
-        moveSpeed = statsManager.movementSpeed;
+        gameEntity = gameObject.GetComponent<GameEntity>();
         InitReferences();
     }
 

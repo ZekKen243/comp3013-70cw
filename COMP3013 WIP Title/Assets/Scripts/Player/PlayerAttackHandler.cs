@@ -34,7 +34,8 @@ public class PlayerAttackHandler : MonoBehaviour
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
+                    BattleManager.Instance.Attack(gameObject, enemy.gameObject, AttackType.SWORD);
+                    //enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
                 }
             }
 

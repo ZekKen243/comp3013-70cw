@@ -33,4 +33,10 @@ public enum CardSlotType
 }
 
 
+public enum AttackType
+{
+  NONE,
+  SWORD,
+  MAGIC
+}
 

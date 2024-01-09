@@ -4950,9 +4950,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec77236a049e02408cfdb02427bf811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacker: {fileID: 0}
   projectileSpeed: 25
   maxProjecttileDistance: 20
-  projectileDamage: 40
+  projectileDamage: 39
 --- !u!54 &-3079059956303243554
 Rigidbody:
   m_ObjectHideFlags: 0
