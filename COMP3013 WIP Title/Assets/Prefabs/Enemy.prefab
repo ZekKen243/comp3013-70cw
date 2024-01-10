@@ -335,7 +335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   protoId: 0
   cardPrefab: {fileID: 3137857060581890016, guid: c78a47e6685d2fb4b8a018ac49bae884, type: 3}
-  dropChance: 86
+  dropChance: 87.9
   dropCount: 1
 --- !u!114 &7981974847556004771
 MonoBehaviour:
@@ -362,7 +362,7 @@ MonoBehaviour:
       swordAttack: 10
       maxHp: 100
       moveSpeed: 10
-      defence: 10
+      defence: 1
 --- !u!1 &3515323403274362840
 GameObject:
   m_ObjectHideFlags: 0

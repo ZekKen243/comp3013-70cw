@@ -6,7 +6,13 @@
       "name": "Cursed Wind Card",
       "min_level": 20,
       "type": "SPELL",
-      "element": "WIND"
+      "element": "WIND",
+
+      "stats": {
+        "swordAttack": 1,
+        "magicAttack": 10,
+        "moveSpeed": 1
+      }
     },
     {
       "proto_id": 1,
@@ -16,8 +22,9 @@
       "element": "ICE",
 
       "stats": {
+        "swordAttack": 5,
         "magicAttack": 5,
-        "moveSpeed": 10
+        "moveSpeed": 2
       }
     },
     {
@@ -25,14 +32,26 @@
       "name": "Fire Card",
       "min_level": 4,
       "type": "SPELL",
-      "element": "FIRE"
+      "element": "FIRE",
+
+      "stats": {
+        "swordAttack": 5,
+        "magicAttack": 5,
+        "moveSpeed": 1
+      }
     },
     {
       "proto_id": 3,
       "name": "Wind Card",
       "min_level": 5,
       "type": "SPELL",
-      "element": "WIND"
+      "element": "WIND",
+
+      "stats": {
+        "swordAttack": 5,
+        "magicAttack": 5,
+        "moveSpeed": 2
+      }
     },
 
     {
@@ -55,8 +74,13 @@
       "proto_id": 6,
       "name": "Magic Wind Card",
       "min_level": 10,
-      "type": "SPELL",
-      "element": "Wind"
+      "type": "PASSIVE",
+      "element": "Wind",
+
+      "stats": {
+        "maxHp": 10,
+        "defence": 5
+      }
     }
   ]
 }

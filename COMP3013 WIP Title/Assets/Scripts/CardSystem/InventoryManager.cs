@@ -61,8 +61,13 @@ public class InventoryManager : MonoBehaviour
 
   public void SwapCards(int srcIndex, int targetIndex)
   {
+    if(srcIndex == targetIndex)
+    {
+      return;
+    }
     CardItem srcCard = GetCard(srcIndex);
     CardItem targetCard = GetCard(targetIndex);
+    
 
     SetCard(srcIndex, targetCard);
     SetCard(targetIndex, srcCard);

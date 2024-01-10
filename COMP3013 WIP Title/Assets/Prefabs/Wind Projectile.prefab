@@ -4844,6 +4844,7 @@ GameObject:
   - component: {fileID: 7991067527738457251}
   - component: {fileID: -3079059956303243554}
   - component: {fileID: 1838953963361551758}
+  - component: {fileID: 6289781198437088315}
   m_Layer: 0
   m_Name: Wind Projectile
   m_TagString: Untagged
@@ -4981,3 +4982,15 @@ MonoBehaviour:
   maxProjecttileDistance: 10
   projectileDamage: 30
   pushBackSpeed: 1
+--- !u!114 &6289781198437088315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657577936574637295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27a32ca8dcda9c42a661d5d3e432a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

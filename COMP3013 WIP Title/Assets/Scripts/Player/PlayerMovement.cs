@@ -28,33 +28,56 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        OnDrawGizmos();
+        UpdateCamera();
         UpdateBodyVelocity();
     }
 
-    private void OnDrawGizmos()
+    private void UpdateCamera()
     {
         if (!mainCamera)
         {
             Debug.LogError("mainCamera reference is null");
             return;
         }
-
+   
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
-
+   
         if (groundPlane.Raycast(cameraRay, out rayLength))
         {
             Vector3 pointToLook = cameraRay.GetPoint(rayLength);
             pointToLook.y = transform.position.y; // Keep the same height as the player
-
+   
             transform.LookAt(pointToLook);
-
-            // Draw the raycast using Gizmos
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(cameraRay.origin, pointToLook);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Editor only, it shouldn't be called in a game loop
+
+        // if (!mainCamera)
+        // {
+        //     Debug.LogError("mainCamera reference is null");
+        //     return;
+        // }
+   
+        // Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        // Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        // float rayLength;
+   
+        // if (groundPlane.Raycast(cameraRay, out rayLength))
+        // {
+        //     Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+        //     pointToLook.y = transform.position.y; // Keep the same height as the player
+   
+        //     transform.LookAt(pointToLook);
+   
+        //      Draw the raycast using Gizmos
+        //     Gizmos.color = Color.red;
+        //     Gizmos.DrawLine(cameraRay.origin, pointToLook);
+        // }
     }
 
     private void UpdateBodyVelocity()

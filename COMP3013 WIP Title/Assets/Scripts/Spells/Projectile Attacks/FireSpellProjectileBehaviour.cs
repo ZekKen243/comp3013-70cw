@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
+
 using UnityEngine;
 
 using Vector3 = UnityEngine.Vector3;
 
 public class FireSpellProjectileBehaviour : MonoBehaviour
 {
-    public GameObject attacker = null;
-
     private Vector3 firingPoint;
 
     [SerializeField] 
@@ -17,7 +13,8 @@ public class FireSpellProjectileBehaviour : MonoBehaviour
     [SerializeField] 
     private float maxProjecttileDistance;
 
-    [SerializeField] public int projectileDamage;
+    [SerializeField] 
+    public int projectileDamage;
     
     // Start is called before the first frame update
     void Start()
@@ -44,13 +41,12 @@ public class FireSpellProjectileBehaviour : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            BattleManager.Instance.Attack(attacker, other.gameObject, AttackType.MAGIC);
-            //other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
-            Destroy(this.gameObject);
-        }
-    }
+    // void OnCollisionEnter(Collision other)
+    // {
+    //     if (other.gameObject.tag == "Enemy")
+    //     {
+    //         other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+    //        Destroy(this.gameObject);
+    //     }
+    // }
 }

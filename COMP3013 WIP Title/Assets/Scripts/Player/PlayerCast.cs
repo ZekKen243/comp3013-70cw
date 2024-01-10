@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -14,13 +13,15 @@ public struct ProjectilePair
 public class PlayerCast : MonoBehaviour
 {
 
+    GameObject player = null;
+
     [SerializeField] 
     private Transform firingPoint;
 
     [SerializeField] 
     private float firingSpeed;
 
-    [SerializeField] 
+    [SerializeField]
     private ProjectilePair[] projectilePrefabs;
 
     public static PlayerCast Instance;
@@ -30,6 +31,7 @@ public class PlayerCast : MonoBehaviour
     void Awake()
     {
         Instance = GetComponent<PlayerCast>();
+        player = GameObject.FindWithTag("Player");
     }
 
     private void Update()
@@ -68,7 +70,11 @@ public class PlayerCast : MonoBehaviour
         {
             return;
         }
-
+        else if(cardItem.IsType(CardType.PASSIVE))
+        {
+            Debug.LogFormat("You can't invoke a passive card.");
+            return;
+        }
 
         foreach(ProjectilePair pair in projectilePrefabs)
         {
@@ -77,14 +83,33 @@ public class PlayerCast : MonoBehaviour
                 continue;
             }
 
-            GameObject projectile = Instantiate(pair.prefab, firingPoint.position, firingPoint.rotation);
-            
-
-
+            SpawnProjectile(pair);
             break;
         }
 
 
         lastTimeShot = Time.time;
+    }
+
+    private void SpawnProjectile(ProjectilePair projectilePair)
+    {
+        GameObject projectile = Instantiate(projectilePair.prefab, firingPoint.position, firingPoint.rotation);
+        if(projectile == null)
+        {
+            Debug.LogErrorFormat("Couldn't spawn projectile, instantination failed. Projectile Pair: {0}", projectilePair);
+            return;
+        }
+
+        ProjectileController controller = projectile.GetComponent<ProjectileController>();
+        if(controller == null)
+        {
+            Debug.LogErrorFormat("Projectile prefab has no ProjectileController script attached, cannot attach attack data! {0}", projectilePair);
+            Destroy(projectile);
+            return;
+        }
+
+
+        // Maybe add the script to the player game object
+        controller.SetAttacker(player);
     }
 }

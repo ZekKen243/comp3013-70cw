@@ -4843,6 +4843,7 @@ GameObject:
   - component: {fileID: 5332223908051024880}
   - component: {fileID: 7991067527738457251}
   - component: {fileID: -648550526038708983}
+  - component: {fileID: 6712909239837352700}
   - component: {fileID: -3079059956303243554}
   m_Layer: 0
   m_Name: Fire Projectile
@@ -4936,7 +4937,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-648550526038708983
 MonoBehaviour:
@@ -4950,10 +4951,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec77236a049e02408cfdb02427bf811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attacker: {fileID: 0}
   projectileSpeed: 25
   maxProjecttileDistance: 20
   projectileDamage: 39
+--- !u!114 &6712909239837352700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657577936574637295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27a32ca8dcda9c42a661d5d3e432a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-3079059956303243554
 Rigidbody:
   m_ObjectHideFlags: 0

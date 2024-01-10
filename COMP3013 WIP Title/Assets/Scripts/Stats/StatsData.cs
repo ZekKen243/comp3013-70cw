@@ -12,6 +12,7 @@ public class Stats
   public int defence = 0;
 
 
+
   public static Stats operator +(Stats stats1, Stats stats2)
   {
     Stats result = new()

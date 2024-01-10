@@ -16,6 +16,16 @@ public class CardItem
 
   public Stats stats = new();
 
+  public bool IsType(CardType cardType)
+  {
+    return this.type == cardType;
+  }
+
+  public bool IsElement(CardElement cardElement)
+  {
+    return this.element == cardElement;
+  }
+
   public static CardItem FromProto(int id, CardProtoData protoData)
   {
     return new() {

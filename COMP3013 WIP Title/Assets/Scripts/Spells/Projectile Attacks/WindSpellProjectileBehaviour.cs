@@ -5,8 +5,6 @@ using Vector3 = UnityEngine.Vector3;
 
 public class WindSpellProjectileBehaviour : MonoBehaviour
 {
-    public GameObject attacker = null;
-
     private Vector3 firingPoint;
 
     public float projectileSpeed;
@@ -46,7 +44,7 @@ public class WindSpellProjectileBehaviour : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+            //other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
             Vector3 movement = -Vector3.forward;  // Opposite direction compared to previous example
             other.gameObject.transform.Translate(movement * pushBackSpeed * Time.deltaTime);
             Debug.Log("Applied force. Force: ");

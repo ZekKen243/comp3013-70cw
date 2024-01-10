@@ -14,9 +14,9 @@ public class CardEnemyDrop: MonoBehaviour
 
     public void DropCard() 
     {
-        if(Random.Range(0.0f, 100.0f) < dropChance)
+        if(Random.Range(0.0f, 100.0f) <= dropChance)
         {
-            return;
+            //return;
         }
 
         GameObject droppedItem = Instantiate(cardPrefab, transform.position, Quaternion.identity);
