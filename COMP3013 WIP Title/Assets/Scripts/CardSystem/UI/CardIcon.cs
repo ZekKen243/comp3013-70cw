@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
   public void Awake()
@@ -75,7 +75,7 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
       return;
     }
 
-    iconImage.color = Color.white;
+    iconImage.color = NormalColor;
     iconImage.sprite = icon;
   }
 
@@ -111,8 +111,28 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     iconImage.raycastTarget = true;
   }
 
-  // Getters
-  public int slotIndex
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+      if(cardData == null)
+      {
+        return;
+      }
+
+      iconImage.color = HoverColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+      if(cardData == null)
+      {
+        return;
+      }
+
+      iconImage.color = NormalColor;
+    }
+
+    // Getters
+    public int slotIndex
   {
     get
     {
@@ -140,5 +160,7 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
   private Transform initialParent = null;
   private Image iconImage = null;
   private CardSlot cardSlot = null;
+  public Color HoverColor = new Color(0.7f, 0.7f, 0.7f);
+  public Color NormalColor = Color.white;
 }
 

@@ -28,8 +28,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        UpdateCamera();
         UpdateBodyVelocity();
+    }
+
+    private void FixedUpdate() 
+    {
+        UpdateCamera();
     }
 
     private void UpdateCamera()
@@ -94,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetMoveVelocity()
     {
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        return moveInput * moveSpeed;
+
+        return moveInput.normalized * moveSpeed;
     }
 }

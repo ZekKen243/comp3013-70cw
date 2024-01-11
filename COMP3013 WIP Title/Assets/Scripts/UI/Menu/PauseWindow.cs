@@ -1,10 +1,12 @@
-
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseWindow : BaseWindow
 {
     public void ExitMainMenu()
     {
-        GameManager.Instance.LoadScene(GameScene.MAIN_MENU);
+        Destroy(GameObject.FindWithTag("UI"));
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void TogglePause()

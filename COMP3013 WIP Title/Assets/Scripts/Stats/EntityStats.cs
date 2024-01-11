@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class EntityStats 
 {
+  public event Action<EntityStats> OnStatsUpdate;
 
   public int currentHP = 0;
   public Stats currentStats;
@@ -21,11 +22,13 @@ public class EntityStats
   public void ResetCurrentStats()
   {
     currentStats = defaultStats;
+    OnStatsUpdate?.Invoke(this);
   }
 
   public void ResetHP()
   {
     currentHP = currentStats.maxHp;
+    OnStatsUpdate?.Invoke(this);
   }
 
   public bool IsHpDepleted()
@@ -33,7 +36,7 @@ public class EntityStats
     return currentHP <= 0;
   }
 
-  public void UpdateHP(int hp)
+  public void IncrementHP(int hp)
   {
 
     currentHP += hp;
@@ -42,16 +45,20 @@ public class EntityStats
     {
       currentHP = 0;
     }
+
+    OnStatsUpdate?.Invoke(this);
   }
 
   public void AddStats(Stats modifier)
   {
     currentStats += modifier;
+    OnStatsUpdate?.Invoke(this);
   }
 
   public void RemStats(Stats modifier)
   {
     currentStats -= modifier;
+    OnStatsUpdate?.Invoke(this);
   }
 
 }

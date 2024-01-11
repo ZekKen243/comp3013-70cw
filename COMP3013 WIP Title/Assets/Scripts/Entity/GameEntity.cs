@@ -9,6 +9,7 @@ public class GameEntity : MonoBehaviour
   public event Action<int, int, int> OnTakeDamage;
   public event Action OnDie;
 
+
   public EntityStats EntityStatsData = new();
 
   public Stats stats
@@ -26,7 +27,7 @@ public class GameEntity : MonoBehaviour
 
   public void TakeDamage(int damage)
   {
-    EntityStatsData.UpdateHP(-damage);
+    EntityStatsData.IncrementHP(-damage);
     OnTakeDamage?.Invoke(damage, EntityStatsData.currentHP, stats.maxHp);
 
     if(EntityStatsData.IsHpDepleted())

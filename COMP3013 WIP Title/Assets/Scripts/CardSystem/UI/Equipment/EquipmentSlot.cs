@@ -23,7 +23,6 @@ class EquipmentSlot : CardSlot, IDropHandler, IPointerClickHandler
       default:
         break;
     }
-
   }
 
   private void OnDropInventoryCard(CardIcon cardIcon)
