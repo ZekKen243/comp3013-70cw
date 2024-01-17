@@ -1,6 +1,9 @@
 
+using System;
 
 
+
+[Serializable]
 public class CardItem
 {
   public int id = 0;
@@ -9,12 +12,19 @@ public class CardItem
   public string name = "";
   public int minLevel = 0;
   public CardElement element = CardElement.NONE;
-  
-  // todo: Add attributes
-  // ex:
-  // public CardAttribute[] cardAttributes;
-  // CardAttribute => a class with type => value
-  // Example: CardAttribute(AttributeType.ATTACK, 2)
+  public CardType type = CardType.NONE;
+
+  public Stats stats = new();
+
+  public bool IsType(CardType cardType)
+  {
+    return this.type == cardType;
+  }
+
+  public bool IsElement(CardElement cardElement)
+  {
+    return this.element == cardElement;
+  }
 
   public static CardItem FromProto(int id, CardProtoData protoData)
   {
@@ -23,7 +33,9 @@ public class CardItem
       protoId = protoData.proto_id,
       name = protoData.name,
       minLevel = protoData.min_level,
-      element = protoData.elementEnum
+      element = protoData.elementEnum,
+      type = protoData.typeEnum,
+      stats = protoData.stats
     };
   }
 }

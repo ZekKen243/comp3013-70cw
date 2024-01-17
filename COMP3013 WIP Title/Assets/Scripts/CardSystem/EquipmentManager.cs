@@ -9,27 +9,55 @@ public class EquipmentManager : MonoBehaviour
 
   static public EquipmentManager Instance = null;
   public EquipmentWindow equipmentWnd = null;
-  private CardCollection equipedCards = new CardCollection();
+  private CardCollection equipedCards = new();
 
-  public void Awake()
+  private GameObject player = null;
+
+  private void Start() 
+  {
+    RefreshPlayerStats();
+  }
+
+  private void Awake()
   {
     Instance = this;
     InitReferences();
   }
 
-  public void Start()
-  {
-    InitTestCards();
-  }
 
   private void InitReferences()
   {
     equipmentWnd = GetComponent<EquipmentWindow>();
+    player = GameObject.FindWithTag("Player");
   }
 
-  private void InitTestCards()
+  public void RefreshPlayerStats()
   {
-    SetCard(0, new CardItem { id = 3, element = CardElement.ICE });
+    if(!player)
+    {
+      Debug.LogErrorFormat("Failed to refresh player stats, no player found.");
+      return;
+    }
+
+    GameEntity playerEntity = player.GetComponent<GameEntity>();
+    if(!playerEntity)
+    {
+      Debug.LogErrorFormat("Failed to refresh player stats, player has no CharacterStats script.");
+      return;
+    }
+
+    playerEntity.EntityStatsData.ResetCurrentStats();
+
+
+    foreach(var pair in equipedCards)
+    {
+      if(pair.Value == null)
+      {
+        continue;
+      }
+
+      playerEntity.AddCardStats(pair.Value);
+    }
   }
 
   public void SwapCards(int srcIndex, int targetIndex)
@@ -77,6 +105,8 @@ public class EquipmentManager : MonoBehaviour
   {
     equipedCards[index] = card;
     equipmentWnd.UpdateSlot(index);
+
+    RefreshPlayerStats();
   }
 
   public CardItem GetEquipedCard(int index)

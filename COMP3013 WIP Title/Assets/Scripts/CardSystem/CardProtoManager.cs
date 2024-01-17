@@ -12,6 +12,9 @@ public class CardProtoData
   public string name;
   public int min_level;
   public string element;
+  public string type;
+
+  public Stats stats;
 
   // todo: Add attributes
   // ex:
@@ -28,6 +31,18 @@ public class CardProtoData
     set
     {
       element = value.ToString();
+    }
+  }
+
+  public CardType typeEnum
+  {
+    get
+    {
+      return EnumUtil.ParseEnum<CardType>(type);
+    }
+    set
+    {
+      type = value.ToString();
     }
   }
 }
@@ -62,6 +77,8 @@ public class CardProtoManager
     string jsonFilePath = Application.dataPath + "/Resources/CardProtoTable.json";
 
     string jsonContent = System.IO.File.ReadAllText(jsonFilePath);
+    
+
     CardProtoData[] cardProtoArr = JsonHelper.FromJson<CardProtoData>(jsonContent);
 
     foreach(CardProtoData cardProto in cardProtoArr)

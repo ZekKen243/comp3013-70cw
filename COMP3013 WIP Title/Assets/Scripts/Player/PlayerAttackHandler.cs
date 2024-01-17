@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttackHandler : MonoBehaviour
@@ -11,9 +10,14 @@ public class PlayerAttackHandler : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int swordDamage = 30;
-    public GameObject fireball;
+    public GameObject player = null;
 
     private bool damageDealtInAnimationLoop = false;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player"); 
+    }
 
     // Update is called once per frame
     void Update()
@@ -26,10 +30,9 @@ public class PlayerAttackHandler : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Attacking");
-        if (!damageDealtInAnimationLoop)
+        if(!damageDealtInAnimationLoop)
         {
-            animator.SetTrigger("Attacking");
+            animator.SetTrigger("Attack");
 
             Collider[] enemiesHit = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
@@ -37,7 +40,8 @@ public class PlayerAttackHandler : MonoBehaviour
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
+                    BattleManager.Instance.Attack(player, enemy.gameObject, AttackType.SWORD);
+                    //enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
                 }
             }
 
@@ -48,18 +52,15 @@ public class PlayerAttackHandler : MonoBehaviour
     void ResetDamageDealtFlag()
     {
         damageDealtInAnimationLoop = false;
-        animator.SetTrigger("Idle");
-        Debug.Log("Resetting");
     }
-
 
     void OnDrawGizmosSelected()
     {
-
         if(attackPoint == null)
         {
             return;
         }
+
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

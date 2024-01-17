@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class CardGameObject : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class CardGameObject : MonoBehaviour
   {
     Renderer renderer = GetComponent<Renderer>();
     Light light = GetComponentInChildren<Light>();
+    
     CardProtoData protoData = CardProtoManager.Instance.GetCardProto(protoId);
 
     if(renderer == null || light == null || protoData == null)

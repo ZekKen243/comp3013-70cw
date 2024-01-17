@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
   public void Awake()
@@ -26,10 +26,10 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
   private Sprite GetSpriteIconByElement()
   {
     string spritePath = "cards/default_card_icon";
-
+  
     if(cardData == null)
     {
-      return Resources.Load<Sprite>("cards/empty_card_icon");
+      return null;
     }
 
     switch(cardData.element)
@@ -39,24 +39,24 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
       case CardElement.FIRE:
       {
-        spritePath = "cards/fire_card_sprite";
+        spritePath = "cards/fire_card";
         break;
       }
 
       case CardElement.WIND:
       {
-        spritePath = "cards/wind_card_sprite";
+        spritePath = "cards/wind_card";
         break;
       }
 
       case CardElement.ICE:
       {
-        spritePath = "cards/ice_card_sprite";
+        spritePath = "cards/ice_card";
         break;
       }
 
       default:
-        break;
+        return null;
     }
 
     return Resources.Load<Sprite>(spritePath);
@@ -69,7 +69,13 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
       Debug.LogErrorFormat("Can't update the sprite for card icon, no image component found for slot index {0}, slot type {1}", cardSlot.index, slotType);
       return;
     }
+    else if(icon == null)
+    {
+      iconImage.color = new Color(0, 0, 0, 0);
+      return;
+    }
 
+    iconImage.color = NormalColor;
     iconImage.sprite = icon;
   }
 
@@ -105,8 +111,28 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     iconImage.raycastTarget = true;
   }
 
-  // Getters
-  public int slotIndex
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+      if(cardData == null)
+      {
+        return;
+      }
+
+      iconImage.color = HoverColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+      if(cardData == null)
+      {
+        return;
+      }
+
+      iconImage.color = NormalColor;
+    }
+
+    // Getters
+    public int slotIndex
   {
     get
     {
@@ -134,5 +160,7 @@ public class CardIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
   private Transform initialParent = null;
   private Image iconImage = null;
   private CardSlot cardSlot = null;
+  public Color HoverColor = new Color(0.7f, 0.7f, 0.7f);
+  public Color NormalColor = Color.white;
 }
 

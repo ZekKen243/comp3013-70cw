@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public abstract class CardSlot : MonoBehaviour, IDropHandler
@@ -14,6 +15,8 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
   private void InitReferences()
   {
     cardIcon = GetComponentInChildren<CardIcon>();
+    slotImage = GetComponent<Image>();
+    UpdateIcon();
   }
 
   public void SetCardData(CardItem data)
@@ -39,14 +42,17 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
     OnDropCardIcon(cardIcon);
   }
 
-  public int index 
+
+    public int index 
   {
     get
     {
       return transform.GetSiblingIndex();
     }
   }
-
+  
+  
+  private Image slotImage = null;
   private CardIcon cardIcon = null;
   public CardItem cardData = null;
   public CardSlotType slotType = CardSlotType.NONE;

@@ -1,27 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Device;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private GameObject player;
-    private CharacterStats statsManager;
-    public float moveSpeed;
-    public float rotationSpeed;
-
-
+    private GameEntity gameEntity;
     private Rigidbody rigidBody;
     private Camera mainCamera;
-    public Animator animator;
 
+    public int moveSpeed
+    {
+        get
+        {
+            return gameEntity.stats.moveSpeed;
+        }
+    }
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        statsManager = player.GetComponent<CharacterStats>();
-        moveSpeed = statsManager.movementSpeed;
+        gameEntity = gameObject.GetComponent<GameEntity>();
         InitReferences();
     }
 
@@ -31,40 +26,67 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = FindObjectOfType<Camera>();
     }
 
-
     void Update()
     {
-        UpdateBodyRotation();
         UpdateBodyVelocity();
-
-        if (rigidBody.velocity.magnitude > 0)
-        {
-            animator.SetTrigger("Walking");
-        }
-        else
-        {
-            animator.SetTrigger("Idle");
-        }
     }
-    private void UpdateBodyRotation()
+
+    private void FixedUpdate() 
     {
+        UpdateCamera();
+    }
+
+    private void UpdateCamera()
+    {
+        if (!mainCamera)
+        {
+            Debug.LogError("mainCamera reference is null");
+            return;
+        }
+   
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayLength;
-
+   
         if (groundPlane.Raycast(cameraRay, out rayLength))
         {
             Vector3 pointToLook = cameraRay.GetPoint(rayLength);
             pointToLook.y = transform.position.y; // Keep the same height as the player
-
+   
             transform.LookAt(pointToLook);
-
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Editor only, it shouldn't be called in a game loop
+
+        // if (!mainCamera)
+        // {
+        //     Debug.LogError("mainCamera reference is null");
+        //     return;
+        // }
+   
+        // Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
+        // Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        // float rayLength;
+   
+        // if (groundPlane.Raycast(cameraRay, out rayLength))
+        // {
+        //     Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+        //     pointToLook.y = transform.position.y; // Keep the same height as the player
+   
+        //     transform.LookAt(pointToLook);
+   
+        //      Draw the raycast using Gizmos
+        //     Gizmos.color = Color.red;
+        //     Gizmos.DrawLine(cameraRay.origin, pointToLook);
+        // }
     }
 
     private void UpdateBodyVelocity()
     {
-        if(!rigidBody)
+        if (!rigidBody)
         {
             Debug.LogError("rigidBody reference is null");
             return;
@@ -73,10 +95,10 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = GetMoveVelocity();
     }
 
-
     private Vector3 GetMoveVelocity()
     {
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        return moveInput * moveSpeed;
+
+        return moveInput.normalized * moveSpeed;
     }
 }

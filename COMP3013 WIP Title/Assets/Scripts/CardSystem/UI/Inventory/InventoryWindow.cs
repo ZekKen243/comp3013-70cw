@@ -14,10 +14,16 @@ public class InventoryWindow : BaseWindow
     RefreshInventory();
   }
 
+  public void OnEnable()
+  {
+    HideTooltip();
+  }
+
   private void InitReferences()
   {
     cardSlots = GetComponentsInChildren<InventorySlot>();
     inventoryTooltip = GetComponentInChildren<InventoryTooltip>(true);
+    inventoryPlayerStats = GetComponentInChildren<InventoryPlayerStats>(true);
   }
 
   public void RefreshInventory()
@@ -39,6 +45,7 @@ public class InventoryWindow : BaseWindow
     }
 
     cardSlots[index].SetCardData(InventoryManager.Instance.GetCard(index));
+
   }
 
   public void OpenTooltip(CardItem cardData)
@@ -49,15 +56,18 @@ public class InventoryWindow : BaseWindow
       return;
     }
 
+    inventoryPlayerStats.Hide();
     inventoryTooltip.Open(ref cardData);
   }
 
   public void HideTooltip()
   {
     inventoryTooltip.Hide();
+    inventoryPlayerStats.Open();
   }
 
   private InventorySlot[] cardSlots = null;
   private InventoryTooltip inventoryTooltip = null;
+  private InventoryPlayerStats inventoryPlayerStats = null;
   
 }

@@ -6,18 +6,36 @@
             "id": "ca567f21-9d36-448a-84c2-ba39ef37a4e4",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "8be811a2-cf98-49d0-91d5-90d619fd3b4d",
-                    "expectedControlType": "Vector2",
+                    "name": "UseCard1",
+                    "type": "Button",
+                    "id": "27269f6c-fc9c-4494-b674-4fa841edced8",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "UseCard2",
                     "type": "Button",
-                    "id": "cc032338-35e3-4988-96b9-5bd2a01f27c0",
+                    "id": "15b88e02-184f-4c5c-83d8-8229c9ce7dd2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseCard3",
+                    "type": "Button",
+                    "id": "e2bef550-cac2-4834-ba4a-33abcde5deb0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseCard4",
+                    "type": "Button",
+                    "id": "b67861f1-48c1-45f1-a9e7-97f68a4cecbe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -27,69 +45,47 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "adb52fad-fd90-4098-af6d-04ab74f44600",
-                    "path": "<Mouse>/leftButton",
+                    "id": "0d57e67b-7d17-4630-a9e6-f79daaddc6d3",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "UseCard1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "f55eab62-332b-4a25-b788-6b6f7298c3a0",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "26029ca7-8e11-493c-b9df-1b0189ba9feb",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
+                    "action": "UseCard2",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "25d01f59-3445-4360-9c5c-79adf53ff22b",
-                    "path": "<Keyboard>/w",
+                    "name": "",
+                    "id": "64700ec4-38f8-4c74-9b78-25cd00152192",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "UseCard3",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "down",
-                    "id": "5b7b683a-6cc0-47c3-9011-ba4529aff8ff",
-                    "path": "<Keyboard>/s",
+                    "name": "",
+                    "id": "a4b74f8a-46da-4ea4-be84-5eb14f5fe270",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "UseCard4",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "ffead978-f0ba-4d9d-ade5-485c83223102",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "aff4baab-b138-4ba7-b4a2-32dab0caf0e5",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -1,20 +1,33 @@
+using System;
 using UnityEngine;
 
 public abstract class BaseWindow : MonoBehaviour
 {
+  public virtual void OnShow() {}
+  public virtual void OnHide() {}
+  
+
   public void ShowWindow()
   {
     gameObject.SetActive(true);
+    OnShow();
   }
 
   public void HideWindow()
   {
     gameObject.SetActive(false);
+    OnHide();
   }
 
   public void ToggleWindow()
   {
-    gameObject.SetActive(!gameObject.activeSelf);
+    if(IswindowVisible())
+    {
+      HideWindow();
+      return;
+    }
+
+    ShowWindow();
   }
 
   public bool IswindowVisible()

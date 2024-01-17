@@ -7,14 +7,44 @@ public class EnemyHandler : MonoBehaviour
     public int currentHealth;
     FloatingHealthBar healthBar;
     private CardEnemyDrop cardDrop = null;
+    private GameEntity gameEntity = null;
 
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar = GetComponentInChildren<FloatingHealthBar>();
-        cardDrop = GetComponent<CardEnemyDrop>();
+
     }
 
+    void Awake()
+    {
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        cardDrop = GetComponent<CardEnemyDrop>();
+        gameEntity = GetComponent<GameEntity>();
+    }
+
+    void OnEnable() 
+    {
+        gameEntity.OnTakeDamage += OnTakeDamage;
+        gameEntity.OnDie += OnDie;
+    }
+
+    void OnDisable() 
+    {
+        gameEntity.OnTakeDamage -= OnTakeDamage;
+        gameEntity.OnDie -= OnDie;
+    }
+
+    void OnTakeDamage(int damage, int currentHealth, int maxHealth)
+    {
+        healthBar.UpdateHealthBar(currentHealth, maxHealth);
+    }
+
+    void OnDie()
+    {
+        Die();
+    }
+
+    // Old code
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -25,7 +55,7 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Enemy died!");
         gameObject.SetActive(false);

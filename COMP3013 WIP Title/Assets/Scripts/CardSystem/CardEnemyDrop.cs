@@ -14,6 +14,11 @@ public class CardEnemyDrop: MonoBehaviour
 
     public void DropCard() 
     {
+        if(Random.Range(0.0f, 100.0f) <= dropChance)
+        {
+            //return;
+        }
+
         GameObject droppedItem = Instantiate(cardPrefab, transform.position, Quaternion.identity);
         if(droppedItem == null)
         {
@@ -24,13 +29,8 @@ public class CardEnemyDrop: MonoBehaviour
         CardGameObject card = droppedItem.GetComponent<CardGameObject>();
         if(card == null)
         {
+            Destroy(droppedItem);
             Debug.LogErrorFormat("Failed to drop card, the card prefab doesn't have a CardGameObject script.");
-            return;
-        }
-
-
-        if(Random.Range(0.0f, 100.0f) < dropChance)
-        {
             return;
         }
 

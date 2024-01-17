@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 
   static public InventoryManager Instance = null;
   public InventoryWindow inventoryWnd = null;
-  private CardCollection cardCollection = new CardCollection();
+  private CardCollection cardCollection = new();
 
 
   public void Awake()
@@ -25,15 +25,19 @@ public class InventoryManager : MonoBehaviour
 
   public void Start()
   {
-    InitTestCards();
+    DEBUG_GiveTestCards();
   }
 
   //! TEST PURPOSE
-  private void InitTestCards()
+  private void DEBUG_GiveTestCards()
   {
-    AutoGiveCard(1);
-    AutoGiveCard(2);
+    if(!Debug.isDebugBuild)
+    {
+      return;
+    }
 
+    AutoGiveCard(2);
+    AutoGiveCard(1);
   }
 
   public void EquipCard(int index)
@@ -57,8 +61,13 @@ public class InventoryManager : MonoBehaviour
 
   public void SwapCards(int srcIndex, int targetIndex)
   {
+    if(srcIndex == targetIndex)
+    {
+      return;
+    }
     CardItem srcCard = GetCard(srcIndex);
     CardItem targetCard = GetCard(targetIndex);
+    
 
     SetCard(srcIndex, targetCard);
     SetCard(targetIndex, srcCard);

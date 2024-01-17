@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public void Awake()
     {
         InitRefferences();
+        DontDestroyOnLoad(gameObject);
 
         if(pauseWindow)
         {

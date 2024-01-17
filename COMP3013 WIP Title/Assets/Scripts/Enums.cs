@@ -17,6 +17,13 @@ public enum CardElement
   MAX_ELEMENTS
 }
 
+public enum CardType 
+{
+  NONE,
+  PASSIVE, // Passive Buff
+  SPELL // Spell
+}
+
 
 public enum CardSlotType
 {
@@ -25,5 +32,12 @@ public enum CardSlotType
   EQUIPMENT
 }
 
+
+public enum AttackType
+{
+  NONE,
+  SWORD,
+  MAGIC
+}
 
 
