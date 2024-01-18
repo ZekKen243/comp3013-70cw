@@ -2,79 +2,119 @@
 
 using UnityEngine;
 
-using CardCollection = System.Collections.Generic.SortedDictionary<int, CardData>;
+using CardCollection = System.Collections.Generic.SortedDictionary<int, CardItem>;
 
 public class InventoryManager : MonoBehaviour 
 {
-  static public InventoryManager Instance = null;
 
-  public InventoryWindow inventoryWindow = null;
+  static public InventoryManager Instance = null;
+  public InventoryWindow inventoryWnd = null;
+  private CardCollection cardCollection = new();
+
 
   public void Awake()
   {
     Instance = this;
-    inventoryWindow = GetComponent<InventoryWindow>();
+    InitReferences();
+  }
+
+  private void InitReferences()
+  {
+    inventoryWnd = GetComponent<InventoryWindow>();
   }
 
   public void Start()
   {
-    InitMockCard();
+    DEBUG_GiveTestCards();
   }
-
 
   //! TEST PURPOSE
-  private void InitMockCard()
+  private void DEBUG_GiveTestCards()
   {
-
-    CardData fireCard = new CardData
-    {
-      id = 1,
-      name = "Fire Card",
-      element = CardElement.FIRE
-    };
-
-    CardData iceCard = new CardData
-    {
-      id = 2,
-      name = "Ice Card",
-      element = CardElement.ICE
-    };
-
-    CardData windCard = new CardData
-    {
-      id = 3,
-      name = "Wind Card",
-      element = CardElement.WIND
-    };
-
-    SetCard(0, fireCard);
-
-    SetCard(2, iceCard);
-    SetCard(3, windCard);
-  }
-
-  public void EquipCard(int index)
-  {
-    CardData card = GetCard(index);
-    if(card == null)
+    if(!Debug.isDebugBuild)
     {
       return;
     }
 
-
-    SetCard(index, null);
-    EquipmentManager.Instance.SetCard(index, card);
+    AutoGiveCard(2);
+    AutoGiveCard(1);
   }
 
-  public void SetCard(int index, CardData card)
+  public void EquipCard(int index)
+  {
+    CardItem cardData = GetCard(index);
+    if(cardData == null)
+    {
+      return;
+    }
+
+    int eqSlotIndex = EquipmentManager.Instance.GetEmptySlotIndex();
+    if(eqSlotIndex < 0)
+    {
+      Debug.Log("Cannot unequip card, equipment is full.");
+      return;
+    }
+
+    EquipmentManager.Instance.SetCard(eqSlotIndex, cardData);
+    SetCard(index, null);
+  }
+
+  public void SwapCards(int srcIndex, int targetIndex)
+  {
+    if(srcIndex == targetIndex)
+    {
+      return;
+    }
+    CardItem srcCard = GetCard(srcIndex);
+    CardItem targetCard = GetCard(targetIndex);
+    
+
+    SetCard(srcIndex, targetCard);
+    SetCard(targetIndex, srcCard);
+  }
+
+  public bool AutoGiveCard(int proto_id)
+  {
+    int index = GetEmptySlotIndex();
+    if(index < 0)
+    {
+      return false;
+    }
+
+    CardProtoData protoData = CardProtoManager.Instance.GetCardProto(proto_id);
+    if(protoData == null)
+    {
+      Debug.LogErrorFormat("Cannot aouto give card by card proto id {0}, no proto found.", proto_id);
+      return false;
+    }
+
+    CardItem cardItem = CardItem.FromProto(index, protoData);
+  
+    SetCard(index, cardItem);
+    return true;
+  }
+
+  public bool AutoSetCard(CardItem card)
+  {
+    int index = GetEmptySlotIndex();
+    if(index < 0)
+    {
+      return false;
+    }
+
+    SetCard(index, card);
+    return true;
+  }
+
+  public void SetCard(int index, CardItem card)
   {
     cardCollection[index] = card;
-    inventoryWindow.UpdateSlot(index);
+    inventoryWnd.UpdateSlot(index);
   }
 
-  public CardData GetCard(int index)
+  public CardItem GetCard(int index)
   {
-    CardData cardData;
+    CardItem cardData;
 
     if (cardCollection.TryGetValue(index, out cardData))
     {
@@ -86,6 +126,17 @@ public class InventoryManager : MonoBehaviour
     }
   }
 
-  private CardCollection cardCollection = new CardCollection();
+  public int GetEmptySlotIndex()
+  {
+    for (int i = 0; i < Constants.MAX_INVENTORY_SIZE; i++)
+    {
+      if(GetCard(i) == null)
+      {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 }
 

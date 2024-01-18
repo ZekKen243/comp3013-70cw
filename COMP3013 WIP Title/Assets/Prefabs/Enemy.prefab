@@ -207,6 +207,8 @@ GameObject:
   - component: {fileID: 8291107912335362051}
   - component: {fileID: 5051844663104927382}
   - component: {fileID: 46245378087921130}
+  - component: {fileID: 450971541946246578}
+  - component: {fileID: 7981974847556004771}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
@@ -318,7 +320,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  enemy: {fileID: 3240017920064995666}
+  currentHealth: 0
+--- !u!114 &450971541946246578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240017920064995666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7b34ea5bf95d54ca9580deed099a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  protoId: 0
+  cardPrefab: {fileID: 3137857060581890016, guid: c78a47e6685d2fb4b8a018ac49bae884, type: 3}
+  dropChance: 87.9
+  dropCount: 1
+--- !u!114 &7981974847556004771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240017920064995666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ce708fac591d941825714644f475b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityStatsData:
+    currentHP: 0
+    currentStats:
+      magicAttack: 0
+      swordAttack: 0
+      maxHp: 0
+      moveSpeed: 0
+      defence: 0
+    defaultStats:
+      magicAttack: 5
+      swordAttack: 10
+      maxHp: 100
+      moveSpeed: 10
+      defence: 1
 --- !u!1 &3515323403274362840
 GameObject:
   m_ObjectHideFlags: 0

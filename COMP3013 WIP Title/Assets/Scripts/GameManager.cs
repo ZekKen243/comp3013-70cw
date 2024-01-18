@@ -3,49 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public enum GameScene 
-{
-  MAIN_MENU,
-  MAIN_SCENE,
-  SAMPLE_SCENE
-}
-
 class GameManager: MonoBehaviour
 {
-  private static GameManager instance = null;
-  
   public bool isGamePaused = false;
-
-  public void TogglePause()
-  {
-    isGamePaused = !isGamePaused;
-
-    if(isGamePaused)
-    {
-      Time.timeScale = 0.0f;
-      return;
-    }
-
-    Time.timeScale = 1.0f;
-  }
-
-  public void LoadScene(GameScene gameScene)
-  {
-    SceneManager.LoadScene(gameScene.ToString());
-  }
-
-  void Awake()
-  {
-    if (instance == null)
-    {
-      instance = this;
-      DontDestroyOnLoad(gameObject);
-    }
-    else if (instance != this)
-    {
-      Destroy(gameObject);
-    }
-  }
+  private static GameManager instance = null;
 
   public static GameManager Instance
   {
@@ -53,13 +14,56 @@ class GameManager: MonoBehaviour
     {
       if (instance == null)
       {
-        GameObject go = new GameObject();
+        GameObject go = new();
         instance = go.AddComponent<GameManager>();
       }
 
       return instance;
     }
   }
+
+  private void Awake()
+  {
+    CheckInstanceState();
+    Initialise();
+  }
+
+  private void CheckInstanceState()
+  {
+    if (instance == null)
+    {
+      instance = this;
+      DontDestroyOnLoad(gameObject);
+      return;
+    }
+
+    Destroy(gameObject);
+  }
+
+  private void Initialise()
+  {
+    CardProtoManager.Instance.Initialise();
+  }
+
+  public void TogglePause()
+  {
+    SetPause(!isGamePaused);
+  }
+
+  public void SetPause(bool pause)
+  {
+    isGamePaused = pause;
+    Time.timeScale = isGamePaused ? 0.0f: 1.0f;
+
+  }
+
+  public void LoadScene(GameScene gameScene)
+  {
+    SceneManager.LoadScene(gameScene.ToString());
+  }
+
+
+
 
 }
 
