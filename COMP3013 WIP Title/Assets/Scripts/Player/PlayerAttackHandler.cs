@@ -10,8 +10,14 @@ public class PlayerAttackHandler : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
     public int swordDamage = 30;
+    public GameObject player = null;
 
     private bool damageDealtInAnimationLoop = false;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player"); 
+    }
 
     // Update is called once per frame
     void Update()
@@ -34,7 +40,8 @@ public class PlayerAttackHandler : MonoBehaviour
             {
                 if (enemy.CompareTag("Enemy"))
                 {
-                    enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
+                    BattleManager.Instance.Attack(player, enemy.gameObject, AttackType.SWORD);
+                    //enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
                 }
             }
 
@@ -49,11 +56,11 @@ public class PlayerAttackHandler : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-
         if(attackPoint == null)
         {
             return;
         }
+
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

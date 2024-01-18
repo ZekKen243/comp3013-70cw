@@ -52,7 +52,7 @@ public class IceSpellProjectileBehaviour : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             hasHitEnemy = true;
-            other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
+            //other.gameObject.GetComponent<EnemyHandler>().TakeDamage(projectileDamage);
             NavMeshAgent navMeshAgent = other.gameObject.GetComponent<NavMeshAgent>();
             StartCoroutine(TemporarySpeedReduction(navMeshAgent, speedReductionDuration));
             Destroy(this.gameObject.GetComponent<MeshRenderer>());

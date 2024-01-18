@@ -28,11 +28,11 @@ public class MovementBuffBehaviour : MonoBehaviour
     {
         float originalSpeed = playerMovement.moveSpeed;
 
-        playerMovement.moveSpeed += moveSpeedIncrease;
+        //playerMovement.moveSpeed += moveSpeedIncrease;
 
         yield return new WaitForSeconds(buffDuration);
 
-        playerMovement.moveSpeed = originalSpeed;
+        //playerMovement.moveSpeed = originalSpeed;
 
         //Destroy(gameObject);
     }
