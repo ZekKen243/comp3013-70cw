@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public abstract class CardSlot : MonoBehaviour, IDropHandler
 {
   public abstract void OnDropCardIcon(CardIcon cardIcon);
+  public virtual void OnUpdateCardSlot(CardItem cardItem) {}
 
   public void Awake()
   {
@@ -23,6 +24,7 @@ public abstract class CardSlot : MonoBehaviour, IDropHandler
   {
     cardData = data;
     UpdateIcon();
+    OnUpdateCardSlot(data);
   }
 
   private void UpdateIcon()

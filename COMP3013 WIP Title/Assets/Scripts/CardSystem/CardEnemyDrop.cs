@@ -9,7 +9,7 @@ public class CardEnemyDrop: MonoBehaviour
 
     [Range(0.0f, 100.0f)]
     public float dropChance = 100.0f;
-    public int dropCount = 1;
+    public uint dropCount = 1;
 
 
     public void DropCard() 
@@ -33,7 +33,7 @@ public class CardEnemyDrop: MonoBehaviour
             Debug.LogErrorFormat("Failed to drop card, the card prefab doesn't have a CardGameObject script.");
             return;
         }
-
+        
         card.protoId = protoId;
         card.UpdateCardObject();
     }

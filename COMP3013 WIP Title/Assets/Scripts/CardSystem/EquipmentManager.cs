@@ -30,6 +30,7 @@ public class EquipmentManager : MonoBehaviour
     equipmentWnd = GetComponent<EquipmentWindow>();
     player = GameObject.FindWithTag("Player");
   }
+  
 
   public void RefreshPlayerStats()
   {
@@ -99,6 +100,11 @@ public class EquipmentManager : MonoBehaviour
     }
 
     return -1;
+  }
+
+  public void UpdateSlot(int index)
+  {
+    equipmentWnd.UpdateSlot(index);
   }
 
   public void SetCard(int index, CardItem card)
