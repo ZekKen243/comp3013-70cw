@@ -73,7 +73,7 @@ public class InventoryManager : MonoBehaviour
     SetCard(targetIndex, srcCard);
   }
 
-  public bool AutoGiveCard(int proto_id)
+  public bool AutoGiveCard(int proto_id, int count = 1)
   {
     int index = GetEmptySlotIndex();
     if(index < 0)
@@ -89,7 +89,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     CardItem cardItem = CardItem.FromProto(index, protoData);
-  
+    cardItem.count = count;
+    cardItem.currCount = count;
     SetCard(index, cardItem);
     return true;
   }
@@ -108,6 +109,7 @@ public class InventoryManager : MonoBehaviour
 
   public void SetCard(int index, CardItem card)
   {
+
     cardCollection[index] = card;
     inventoryWnd.UpdateSlot(index);
   }

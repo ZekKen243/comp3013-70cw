@@ -5,7 +5,7 @@
       "proto_id": 0,
       "name": "Cursed Wind Card",
       "min_level": 20,
-      "type": "SPELL",
+      "type": "PASSIVE",
       "element": "WIND",
 
       "stats": {
@@ -18,7 +18,7 @@
       "proto_id": 1,
       "name": "Ice Card",
       "min_level": 2,
-      "type": "SPELL",
+      "type": "PASSIVE",
       "element": "ICE",
 
       "stats": {

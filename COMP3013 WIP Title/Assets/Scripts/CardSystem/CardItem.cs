@@ -9,6 +9,7 @@ public class CardItem
   public int id = 0;
   public int protoId = 0;
   public int count = 1;
+  public int currCount = 1;
   public string name = "";
   public int minLevel = 0;
   public CardElement element = CardElement.NONE;

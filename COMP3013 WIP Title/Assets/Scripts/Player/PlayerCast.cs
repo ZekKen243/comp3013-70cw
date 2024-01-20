@@ -47,7 +47,21 @@ public class PlayerCast : MonoBehaviour
             return;
         }
 
-        Shoot(EquipmentManager.Instance.GetEquipedCard(usedSlot));
+        CardItem cardItem = EquipmentManager.Instance.GetEquipedCard(usedSlot);
+        if(cardItem == null || cardItem.IsType(CardType.PASSIVE))
+        {
+            return;
+        }
+
+        if(--cardItem.currCount <= 0)
+        {
+            EquipmentManager.Instance.SetCard(usedSlot, null);
+        }
+
+        EquipmentManager.Instance.UpdateSlot(usedSlot);
+        Shoot(cardItem);
+
+
     }
 
     private int GetUsedSlotIndex()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryTooltip : MonoBehaviour
 {
 
+  public static InventoryTooltip Instance = null;
   private CardItem cardData = null;
   
   public TextMeshProUGUI cardTitle = null;
@@ -15,7 +16,12 @@ public class InventoryTooltip : MonoBehaviour
   public TextMeshProUGUI magicAttack = null;
   public TextMeshProUGUI moveSpeed = null;
   public TextMeshProUGUI defence = null;
-  
+  public TextMeshProUGUI usage = null;
+
+  void Awake()
+  {
+    Instance = this;
+  }
 
   public void Open(ref CardItem _cardData)
   {
@@ -42,7 +48,7 @@ public class InventoryTooltip : MonoBehaviour
     magicAttack.text = string.Format("Magic Attack +{0}", cardData.stats.magicAttack);
     moveSpeed.text = string.Format("Move Speed +{0}", cardData.stats.moveSpeed);
     defence.text = string.Format("Defence +{0}", cardData.stats.defence);
-    
+    usage.text = string.Format("Remaining {0}/{1}", cardData.currCount, cardData.count);
   }
 
 }

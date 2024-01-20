@@ -6,6 +6,9 @@ public class CardGameObject : MonoBehaviour
 {
 
   public int protoId = 0;
+
+  [Range(1, 500)]
+  public int count = 1;
   public bool canPickUp = true;
   public bool animate = true;
   
@@ -85,7 +88,7 @@ public class CardGameObject : MonoBehaviour
 
   private void PickUp()
   {
-    if(!canPickUp || !InventoryManager.Instance.AutoGiveCard(protoId))
+    if(!canPickUp || !InventoryManager.Instance.AutoGiveCard(protoId, count))
     {
       return;
     }
