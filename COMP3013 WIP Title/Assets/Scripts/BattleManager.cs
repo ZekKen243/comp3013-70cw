@@ -19,7 +19,7 @@ class BattleManager
     }
   }
 
-  public void Attack(GameObject attacker, GameObject target, AttackType attackType)
+  public int Attack(GameObject attacker, GameObject target, AttackType attackType)
   {
     GameEntity attackerEntity = attacker.GetComponent<GameEntity>();
     GameEntity targetEntity = target.GetComponent<GameEntity>();
@@ -27,7 +27,7 @@ class BattleManager
     if(attackerEntity == null || targetEntity == null)
     {
       Debug.LogErrorFormat("Cannot process attack, no GameEntity script found. Attacker {0}, Target: {1}", attacker.name, target.name);
-      return;
+      return 0;
     }
 
     int damage = CalculateDamage(attackerEntity.stats, targetEntity.stats, attackType);
@@ -40,6 +40,7 @@ class BattleManager
     }
 
     targetEntity.TakeDamage(damage);
+    return damage;
   }
 
   private int CalculateDamage(Stats attackerStats, Stats targetStats, AttackType attackType)

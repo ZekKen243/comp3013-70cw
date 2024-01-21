@@ -1,6 +1,6 @@
 
 using System;
-
+using System.Collections;
 
 
 [Serializable]
@@ -14,6 +14,8 @@ public class CardItem
   public int minLevel = 0;
   public CardElement element = CardElement.NONE;
   public CardType type = CardType.NONE;
+
+  public IEnumerator UsageTimer = null;
 
   public Stats stats = new();
 

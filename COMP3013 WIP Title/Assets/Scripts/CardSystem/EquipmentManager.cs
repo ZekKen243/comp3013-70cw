@@ -1,7 +1,7 @@
 
 
 using UnityEngine;
-
+using System.Collections;
 using CardCollection = System.Collections.Generic.SortedDictionary<int, CardItem>;
 
 public class EquipmentManager : MonoBehaviour 
@@ -30,7 +30,45 @@ public class EquipmentManager : MonoBehaviour
     equipmentWnd = GetComponent<EquipmentWindow>();
     player = GameObject.FindWithTag("Player");
   }
-  
+
+  private void OnUnequipCard(int index, CardItem cardItem)
+  {
+    if(cardItem.IsType(CardType.PASSIVE))
+    {
+      StopCoroutine(cardItem.UsageTimer);
+    }
+  }
+
+  private void OnEquipCard(int index, CardItem cardItem)
+  {
+    if(cardItem.IsType(CardType.PASSIVE))
+    {
+      cardItem.UsageTimer = PassiveCardUsageTimer(index, cardItem);
+      StartCoroutine(cardItem.UsageTimer);
+    }
+  }
+
+  private IEnumerator PassiveCardUsageTimer(int index, CardItem cardItem)
+  {
+    if(!cardItem.IsType(CardType.PASSIVE))
+    {
+      Debug.LogError("Cannot set usage timer for a non passive card.");
+      yield break;
+    }
+
+    while(true)
+    {
+      yield return new WaitForSeconds(1);
+
+      UpdateSlot(index);
+      if(--cardItem.currCount <= 0)
+      {
+        SetCard(index, null);
+        yield break;
+      }
+      
+    }
+  }
 
   public void RefreshPlayerStats()
   {
@@ -109,9 +147,19 @@ public class EquipmentManager : MonoBehaviour
 
   public void SetCard(int index, CardItem card)
   {
+    if(card != null)
+    {
+      OnEquipCard(index, card);
+    }
+
+    CardItem equipedCard = GetEquipedCard(index);
+    if(equipedCard != null)
+    {
+      OnUnequipCard(index, equipedCard);
+    }
+
     equipedCards[index] = card;
     equipmentWnd.UpdateSlot(index);
-
     RefreshPlayerStats();
   }
 

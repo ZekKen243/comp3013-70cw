@@ -12,7 +12,7 @@ public struct ProjectilePair
 
 public class PlayerCast : MonoBehaviour
 {
-
+    public Animator animator;
     GameObject player = null;
 
     [SerializeField] 
@@ -114,16 +114,19 @@ public class PlayerCast : MonoBehaviour
             return;
         }
 
-        ProjectileController controller = projectile.GetComponent<ProjectileController>();
-        if(controller == null)
+        ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+        if(projectileController == null)
         {
             Debug.LogErrorFormat("Projectile prefab has no ProjectileController script attached, cannot attach attack data! {0}", projectilePair);
             Destroy(projectile);
             return;
         }
 
-
+        if(animator != null)
+        {
+            animator.SetTrigger("Spellcasting");
+        }
         // Maybe add the script to the player game object
-        controller.SetAttacker(player);
+        projectileController.SetAttacker(player);
     }
 }
