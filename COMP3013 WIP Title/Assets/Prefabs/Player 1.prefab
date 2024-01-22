@@ -384,7 +384,7 @@ MonoBehaviour:
       defence: 0
     defaultStats:
       magicAttack: 5
-      swordAttack: 5
+      swordAttack: 50
       maxHp: 100
       moveSpeed: 20
       defence: 5
