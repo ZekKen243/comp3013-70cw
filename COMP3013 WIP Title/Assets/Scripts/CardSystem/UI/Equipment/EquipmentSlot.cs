@@ -23,14 +23,23 @@ class EquipmentSlot : CardSlot, IDropHandler, IPointerClickHandler
 
     if(cardItem == null)
     {
+      keystroke.Show();
       cardUsageBar.progress = 0;
       return;
+    }
+
+    if(cardItem.IsType(CardType.PASSIVE))
+    {
+      keystroke.Hide();
+    }
+    else
+    {
+      keystroke.Show();
     }
 
     if(cardItem.currCount > 0 && cardItem.count > 0)
     {
       cardUsageBar.progress = (float) cardItem.currCount / (float) cardItem.count;
-      Debug.LogFormat("AAAA {0}/{1}, PERC {2}", cardItem.currCount, cardItem.count, cardUsageBar.progress);
     }
     
     //keystroke.Hide();

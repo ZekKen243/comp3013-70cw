@@ -35,7 +35,6 @@ public class EquipmentWindow : BaseWindow
       return;
     }
 
-    Debug.LogFormat("Set equipment card index {0}", index);
 
     if(index >= cardSlots.Length || index < 0)
     {

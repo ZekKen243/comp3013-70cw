@@ -29,6 +29,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         UpdateBodyVelocity();
+        UpdateAnimator();
+    }
+
+    private void UpdateAnimator()
+    {
+        if(rigidBody == null || animator == null)
+        {
+            return;
+        }
+
         if (rigidBody.velocity.magnitude > 0)
         {
             animator.SetTrigger("Walking");
@@ -39,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Idle");
         }
     }
+    
 
     private void FixedUpdate() 
     {

@@ -407,6 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385b93a8957240b40bb038db6a9047a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   firingPoint: {fileID: 7598398676304497502}
   firingSpeed: 0.5
   projectilePrefabs:
@@ -880,6 +881,7 @@ GameObject:
   - component: {fileID: 272882300844569920}
   - component: {fileID: 5701568540905051483}
   - component: {fileID: 9185482648856782743}
+  - component: {fileID: 2706117005893353820}
   - component: {fileID: 2892184003590117525}
   - component: {fileID: 549871644492342217}
   - component: {fileID: 911927666401370131}
@@ -1009,6 +1011,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 2
+--- !u!114 &2706117005893353820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776654268963026979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0abb5f76f721e5747bcb20ed31fddfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2892184003590117525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f91cbaa910e46408600bcb41b7f732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &911927666401370131
 MonoBehaviour:
   m_ObjectHideFlags: 0
