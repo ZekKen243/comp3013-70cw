@@ -2295,6 +2295,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.00011062622
       objectReference: {fileID: 0}
+    - target: {fileID: 6378642093798670310, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378642093798670310, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388054038651173880, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6396784328737344629, guid: 9bab4e97304d23b47ae35987b44d7134, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4026,6 +4038,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2706117005893353820, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: deathUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706117005893353820, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
+      propertyPath: healthBarUI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2892184003590117525, guid: 0770452c4e8e8dc4e8a0f37a7cee8303, type: 3}
       propertyPath: stats.maxHp
       value: 100
