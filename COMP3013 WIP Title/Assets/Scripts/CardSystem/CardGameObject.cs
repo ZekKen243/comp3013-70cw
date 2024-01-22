@@ -1,6 +1,6 @@
 
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Audio;
 
 public class CardGameObject : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class CardGameObject : MonoBehaviour
   [Range(0.0f, 300.0f), ]
   public float rotationSpeed = 30.0f;
 
+  public AudioSource audioSource = null;
 
   public void Awake()
   {
@@ -92,6 +93,13 @@ public class CardGameObject : MonoBehaviour
     {
       return;
     }
+
+    //gameObject.GetComponent<MeshRenderer
+
+    //if(audioSource)
+    //{
+    //  audioSource.Play();
+    //}
 
     Destroy(gameObject);
   }

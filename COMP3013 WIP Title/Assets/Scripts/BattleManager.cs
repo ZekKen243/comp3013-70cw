@@ -1,5 +1,6 @@
 
 
+using System;
 using UnityEngine;
 
 class BattleManager
@@ -31,7 +32,6 @@ class BattleManager
     }
 
     int damage = CalculateDamage(attackerEntity.stats, targetEntity.stats, attackType);
-    Debug.LogFormat("AAAAAAAAAAA {0}", damage);
 
     // Damage could end up negative if the defence modifier is higher than the attack value
     // If the damage is negative, the targets hp will increase

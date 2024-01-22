@@ -81705,7 +81705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1106265586788985344, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6474017707193260570, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
       propertyPath: player
@@ -81717,16 +81717,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7411113201945869580, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7411113201945869580, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8220666477973912591, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1070278408}
+    - target: {fileID: 8899051114502373905, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
+      propertyPath: EntityStatsData.currentStats.swordAttack
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81740,13 +81744,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2185550559194192676, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
+      propertyPath: EntityStatsData.defaultStats.swordAttack
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2318303263513012877, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_Name
       value: CITCKnight
       objectReference: {fileID: 0}
     - target: {fileID: 2318303263513012877, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3127631355515646007, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81790,11 +81798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5890324869145737253, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5890324869145737253, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6139785993300114966, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: camera
