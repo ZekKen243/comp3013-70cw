@@ -12,7 +12,6 @@ public class EnemyHandler : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-
     }
 
     void Awake()

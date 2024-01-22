@@ -12,7 +12,7 @@ public struct ProjectilePair
 
 public class PlayerCast : MonoBehaviour
 {
-    public Animator animator;
+    private Animator animator = null;
     GameObject player = null;
 
     [SerializeField] 
@@ -31,6 +31,7 @@ public class PlayerCast : MonoBehaviour
     void Awake()
     {
         Instance = GetComponent<PlayerCast>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
     }
 
@@ -52,6 +53,10 @@ public class PlayerCast : MonoBehaviour
         {
             return;
         }
+        if(!Shoot(cardItem))
+        {
+            return;
+        }
 
         if(--cardItem.currCount <= 0)
         {
@@ -59,7 +64,6 @@ public class PlayerCast : MonoBehaviour
         }
 
         EquipmentManager.Instance.UpdateSlot(usedSlot);
-        Shoot(cardItem);
 
 
     }
@@ -78,16 +82,11 @@ public class PlayerCast : MonoBehaviour
         return -1;
     }
 
-    public void Shoot(CardItem cardItem)
+    public bool Shoot(CardItem cardItem)
     {
-        if (lastTimeShot + firingSpeed > Time.time || cardItem == null)
+        if (lastTimeShot + firingSpeed > Time.time)
         {
-            return;
-        }
-        else if(cardItem.IsType(CardType.PASSIVE))
-        {
-            Debug.LogFormat("You can't invoke a passive card.");
-            return;
+            return false;
         }
 
         foreach(ProjectilePair pair in projectilePrefabs)
@@ -103,6 +102,7 @@ public class PlayerCast : MonoBehaviour
 
 
         lastTimeShot = Time.time;
+        return true;
     }
 
     private void SpawnProjectile(ProjectilePair projectilePair)

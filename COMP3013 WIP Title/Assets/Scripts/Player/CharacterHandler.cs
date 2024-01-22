@@ -46,6 +46,7 @@ public class CharacterHandler : MonoBehaviour
             return;
         }
 
+        Debug.LogFormat("AAAAAAAAAAAAAAAAAAAAAAAAAAAA {0}",  (float) currentHealth / (float) maxHealth);
         healthBarUI.value = (float) currentHealth / (float) maxHealth;
     }
 }

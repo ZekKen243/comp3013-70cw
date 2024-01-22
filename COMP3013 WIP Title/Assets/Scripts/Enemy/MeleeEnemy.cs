@@ -97,7 +97,9 @@ public class MeleeEnemy : MonoBehaviour
         {
             if (player.CompareTag("Player") && !damageDealtInAnimationLoop)
             {
-                player.GetComponent<GameEntity>().TakeDamage(damage);
+               // player.GetComponent<GameEntity>().TakeDamage(damage);
+                BattleManager.Instance.Attack(gameObject, GameObject.Find("Player"), AttackType.SWORD);
+
                 damageDealtInAnimationLoop = true;
                 Debug.Log("Player attacked!");
                 animator.SetTrigger("Idle");

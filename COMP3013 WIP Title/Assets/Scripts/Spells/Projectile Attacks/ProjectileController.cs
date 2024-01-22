@@ -11,12 +11,13 @@ public class ProjectileController : MonoBehaviour
     attacker = gameObject;
   }
 
-  void OnCollisionEnter(Collision other)
+  private void OnTriggerEnter(Collider other)
   {
-    if (other.gameObject.tag == "Enemy")
+    if (other.gameObject.CompareTag("Enemy"))
     {
       BattleManager.Instance.Attack(attacker, other.gameObject, AttackType.MAGIC);
       Destroy(gameObject);
     }
   }
+  
 }
