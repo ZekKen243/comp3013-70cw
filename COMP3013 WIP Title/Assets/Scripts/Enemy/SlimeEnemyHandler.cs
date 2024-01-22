@@ -8,70 +8,71 @@ public class SlimeEnemyHandler : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsPlayer;
-    public LayerMask whatIsGround;  // Add this line for ground detection
-    public float patrolRange;
+    public LayerMask whatIsGround;
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange; 
     public float chaseRange;
     public float attackRange;
+    public bool playerInSightRange, playerInAttackRange;
     public int damage;
     public float attackCooldown = 2f;
     private bool canAttack = true;
-    private Vector3 originalPosition;
-    private Vector3 patrolDestination;
     private EnemyState currentState = EnemyState.Patrolling;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        originalPosition = transform.position;
-        SetRandomPatrolDestination();
     }
 
     private void Update()
     {
-        switch (currentState)
-        {
-            case EnemyState.Patrolling:
-                Patrolling();
-                break;
-            case EnemyState.Chasing:
-                Chasing();
-                break;
-            case EnemyState.Attacking:
-                AttackPlayer();
-                break;
-        }
+        playerInSightRange = Physics.CheckSphere(transform.position, chaseRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange)
+            Patrolling();
+        if (playerInSightRange && !playerInAttackRange)
+            Chasing();
+        if (playerInSightRange && playerInAttackRange)
+            AttackPlayer();
     }
 
     private void Patrolling()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!walkPointSet)
         {
-            SetRandomPatrolDestination();
+            float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+            float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+
+            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            {
+                walkPointSet = true;
+                Debug.Log("Walkpoint set");
+            }
+            walkPointSet = true;
         }
 
-        // Check if the player is within the chase range
-        if (Vector3.Distance(transform.position, player.position) < chaseRange)
+        if (walkPointSet)
         {
-            currentState = EnemyState.Chasing;
+            agent.SetDestination(walkPoint);
         }
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        if (distanceToWalkPoint.magnitude < 1f)
+        {
+            walkPointSet = false;
+        }
+       
     }
 
     private void Chasing()
     {
         agent.SetDestination(player.position);
-
-        // Check if the player is within attack range
-        if (Vector3.Distance(transform.position, player.position) < attackRange)
-        {
-            currentState = EnemyState.Attacking;
-        }
-
-        // Check if the player is outside the chase range
-        if (Vector3.Distance(transform.position, player.position) > chaseRange)
-        {
-            currentState = EnemyState.Patrolling;
-        }
     }
 
     private void AttackPlayer()
@@ -83,21 +84,6 @@ public class SlimeEnemyHandler : MonoBehaviour
         // Start the cooldown period
         canAttack = false;
         Invoke(nameof(ResetAttackCooldown), attackCooldown);
-
-        // Transition back to chasing after attacking
-        currentState = EnemyState.Chasing;
-    }
-
-    private void SetRandomPatrolDestination()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRange;
-        randomDirection += originalPosition;
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, patrolRange, whatIsGround))  // Use whatIsGround for NavMesh.SamplePosition
-        {
-            patrolDestination = hit.position;
-            agent.SetDestination(patrolDestination);
-        }
     }
 
     private void ResetAttackCooldown()
@@ -112,8 +98,5 @@ public class SlimeEnemyHandler : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(patrolDestination, 0.2f);
     }
 }

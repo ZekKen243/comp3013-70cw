@@ -23,6 +23,8 @@ public class RangedEnemy : MonoBehaviour
 
     public GameObject projectile;
     public float spawnDistanceOffset;
+    public Animator animator;
+
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -41,8 +43,12 @@ public class RangedEnemy : MonoBehaviour
 
     private void Patrolling()
     {
-        //Debug.Log("Patrolling");
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet)
+        {
+            SearchWalkPoint();
+            walkPointSet = true;
+            animator.SetTrigger("Walking"); // Set walking animation trigger
+        }
 
         if (walkPointSet)
         {
@@ -54,12 +60,14 @@ public class RangedEnemy : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
         {
             walkPointSet = false;
+            animator.SetTrigger("Idle"); // Set idle animation trigger when reaching the walk point
         }
     }
     private void ChasePlayer()
     {
         //Debug.Log("Chasing");
         agent.SetDestination(player.position);
+        animator.SetTrigger("Walking"); // Set walking animation trigger
     }
     private void AttackPlayer()
     {
@@ -68,6 +76,11 @@ public class RangedEnemy : MonoBehaviour
 
         transform.LookAt(player);
 
+        animator.SetTrigger("Attacking");
+    }
+
+    public void SpawnProjectile()
+    {
         if (!alreadyAttacked)
         {
             GameObject player = GameObject.FindWithTag("Player");
@@ -78,9 +91,10 @@ public class RangedEnemy : MonoBehaviour
             Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
-            Destroy(projectileInstance, 1f);
+            Destroy(projectileInstance, 2f);
 
             alreadyAttacked = true;
+            animator.SetTrigger("Idle");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
