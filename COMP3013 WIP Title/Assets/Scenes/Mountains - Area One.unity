@@ -4691,6 +4691,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &124229200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8769,6 +8770,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &248020534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18613,6 +18615,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &501816896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19170,6 +19173,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &520361972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22138,6 +22142,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &596904566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27200,7 +27205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 990a0af58d455c746b0d8aba9c89c10d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38512,6 +38517,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &1032155550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52341,6 +52347,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &1362072857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56233,6 +56240,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &1467242553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65648,6 +65656,7 @@ MonoBehaviour:
   canPickUp: 1
   animate: 1
   rotationSpeed: 41
+  audioSource: {fileID: 0}
 --- !u!114 &1711718481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81731,6 +81740,10 @@ PrefabInstance:
       propertyPath: EntityStatsData.currentStats.swordAttack
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8899051114502373905, guid: 766336b659852f14ab0f8b0b5e78b8ed, type: 3}
+      propertyPath: EntityStatsData.defaultStats.swordAttack
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81754,7 +81767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318303263513012877, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3127631355515646007, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81798,11 +81811,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5890324869145737253, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5890324869145737253, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6139785993300114966, guid: ca9e868d743d66d42ab51efb6bea8063, type: 3}
       propertyPath: camera
@@ -81839,7 +81852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838910952104350229, guid: 807e93f677b370c4aa29bb8a61c9fa6c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4471332841367079087, guid: 807e93f677b370c4aa29bb8a61c9fa6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81883,11 +81896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6512736673676376753, guid: 807e93f677b370c4aa29bb8a61c9fa6c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6512736673676376753, guid: 807e93f677b370c4aa29bb8a61c9fa6c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7205229192694065149, guid: 807e93f677b370c4aa29bb8a61c9fa6c, type: 3}
       propertyPath: player
