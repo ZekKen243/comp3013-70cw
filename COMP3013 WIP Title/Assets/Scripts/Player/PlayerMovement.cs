@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private GameEntity gameEntity;
     private Rigidbody rigidBody;
     private Camera mainCamera;
-
+    public Animator animator;
     public int moveSpeed
     {
         get
@@ -29,6 +29,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         UpdateBodyVelocity();
+        if (rigidBody.velocity.magnitude > 0)
+        {
+            animator.SetTrigger("Walking");
+        }
+
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
     }
 
     private void FixedUpdate() 

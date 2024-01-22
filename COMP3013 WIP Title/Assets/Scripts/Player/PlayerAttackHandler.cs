@@ -11,7 +11,6 @@ public class PlayerAttackHandler : MonoBehaviour
     public LayerMask enemyLayers;
     public int swordDamage = 30;
     public GameObject player = null;
-
     private bool damageDealtInAnimationLoop = false;
 
     void Start()
@@ -32,7 +31,7 @@ public class PlayerAttackHandler : MonoBehaviour
     {
         if(!damageDealtInAnimationLoop)
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Attacking");
 
             Collider[] enemiesHit = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
@@ -41,6 +40,7 @@ public class PlayerAttackHandler : MonoBehaviour
                 if (enemy.CompareTag("Enemy"))
                 {
                     BattleManager.Instance.Attack(player, enemy.gameObject, AttackType.SWORD);
+                    Debug.Log("Damage dealt");
                     //enemy.GetComponent<EnemyHandler>().TakeDamage(swordDamage);
                 }
             }
