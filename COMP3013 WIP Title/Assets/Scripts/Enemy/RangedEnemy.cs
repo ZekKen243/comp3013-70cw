@@ -89,6 +89,9 @@ public class RangedEnemy : MonoBehaviour
             Vector3 spawnPosition = transform.position + offset;
             GameObject projectileInstance = Instantiate(projectile, spawnPosition, Quaternion.identity);
             Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
+            EnemyProjectileBehaviour enemyProjectileBehaviour = projectileInstance.GetComponent<EnemyProjectileBehaviour>();
+
+            enemyProjectileBehaviour.attacker = gameObject;
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
             Destroy(projectileInstance, 2f);

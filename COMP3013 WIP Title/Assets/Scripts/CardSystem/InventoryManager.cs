@@ -36,8 +36,8 @@ public class InventoryManager : MonoBehaviour
       return;
     }
 
-    AutoGiveCard(2);
-    AutoGiveCard(1);
+    AutoGiveCard(2, 30);
+    AutoGiveCard(1, 100);
   }
 
   public void EquipCard(int index)

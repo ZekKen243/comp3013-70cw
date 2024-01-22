@@ -79,7 +79,8 @@ public class SlimeEnemyHandler : MonoBehaviour
     {
         agent.SetDestination(transform.position);
         // Inflict damage to the player
-        player.GetComponent<GameEntity>().TakeDamage(damage);
+        // player.GetComponent<GameEntity>().TakeDamage(damage);
+        BattleManager.Instance.Attack(gameObject, GameObject.Find("Player"), AttackType.SWORD);
 
         // Start the cooldown period
         canAttack = false;
